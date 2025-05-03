@@ -1,0 +1,14 @@
+.idea
+target
+**/target/*
+*.iml
+**/iml/*
+.classpath
+.project
+.settings/
+.DS_Store
+**/*.log
+logs/
+deploy/
+.metadata/
+.xml/
