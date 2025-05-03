@@ -22,4 +22,7 @@ public interface StockPriceMapper {
 
     @Select("SELECT DISTINCT symbol FROM stock_price")
     List<String> findAllSymbols();
+
+    @Select("SELECT MAX(trade_date) FROM stock_price WHERE symbol = #{symbol}")
+    LocalDate findLatestTradeDate(@Param("symbol") String symbol);
 } 

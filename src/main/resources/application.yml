@@ -18,10 +18,11 @@ mybatis:
     map-underscore-to-camel-case: true
 
 stock:
+  alpha-vantage-api-key: AZ3II6AA1ZWXL24C
   symbols:
     - SPY
     - QQQ
   schedule:
     cron: "0 0 16 * * ?"  # 每天下午4点执行
   init:
-    years: 3  # 初始化3年的数据 
+    years: 5  # 初始化5年的数据 

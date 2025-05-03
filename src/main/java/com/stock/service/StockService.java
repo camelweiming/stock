@@ -134,4 +134,67 @@ public class StockService {
         log.info("Getting all symbols: {}", symbols);
         return symbols != null ? symbols : new ArrayList<>();
     }
+
+    public void incrementalUpdate() {
+        log.info("Starting incremental data update");
+        for (String symbol : symbols) {
+            log.info("Processing symbol: {}", symbol);
+            try {
+                LocalDate latestDate = stockPriceMapper.findLatestTradeDate(symbol);
+                if (latestDate == null) {
+                    log.info("No existing data found for symbol: {}, performing full initialization", symbol);
+                    initializeHistoricalData();
+                    continue;
+                }
+                log.info("Latest trade date for {}: {}", symbol, latestDate);
+
+                JsonNode timeSeriesData = getTimeSeriesWithRetry(symbol);
+                if (timeSeriesData != null) {
+                    JsonNode timeSeries = timeSeriesData.get("Time Series (Daily)");
+                    if (timeSeries != null) {
+                        int updatedCount = 0;
+                        for (Map.Entry<String, JsonNode> entry : (Iterable<Map.Entry<String, JsonNode>>) timeSeries::fields) {
+                            LocalDate date = LocalDate.parse(entry.getKey(), DateTimeFormatter.ISO_LOCAL_DATE);
+                            if (date.isAfter(latestDate)) {
+                                JsonNode quote = entry.getValue();
+                                
+                                StockPrice stockPrice = new StockPrice();
+                                stockPrice.setSymbol(symbol);
+                                stockPrice.setTradeDate(date);
+                                stockPrice.setOpenPrice(new BigDecimal(quote.get("1. open").asText()));
+                                stockPrice.setHighPrice(new BigDecimal(quote.get("2. high").asText()));
+                                stockPrice.setLowPrice(new BigDecimal(quote.get("3. low").asText()));
+                                stockPrice.setClosePrice(new BigDecimal(quote.get("4. close").asText()));
+                                stockPrice.setVolume(Long.parseLong(quote.get("5. volume").asText()));
+                                
+                                stockPriceMapper.insertOrUpdate(stockPrice);
+                                updatedCount++;
+                                
+                                // 记录每条插入的数据
+                                log.info("Inserted/Updated record - Symbol: {}, Date: {}, Open: {}, High: {}, Low: {}, Close: {}, Volume: {}",
+                                    symbol,
+                                    date,
+                                    stockPrice.getOpenPrice(),
+                                    stockPrice.getHighPrice(),
+                                    stockPrice.getLowPrice(),
+                                    stockPrice.getClosePrice(),
+                                    stockPrice.getVolume());
+                                
+                                TimeUnit.MILLISECONDS.sleep(100);
+                            }
+                        }
+                        log.info("Updated {} new records for symbol: {}", updatedCount, symbol);
+                    } else {
+                        log.warn("No time series data found for symbol: {}", symbol);
+                    }
+                } else {
+                    log.error("Failed to retrieve data for symbol: {}", symbol);
+                }
+                TimeUnit.SECONDS.sleep(30);
+            } catch (Exception e) {
+                log.error("Error processing symbol {}: {}", symbol, e.getMessage(), e);
+            }
+        }
+        log.info("Incremental data update completed");
+    }
 } 

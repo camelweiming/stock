@@ -31,6 +31,13 @@ public class StockController {
         return "Historical data initialization started";
     }
 
+    @PostMapping("/incremental-update")
+    @ResponseBody
+    public String incrementalUpdate() {
+        stockService.incrementalUpdate();
+        return "Incremental update started";
+    }
+
     @GetMapping("/api/stock-data")
     @ResponseBody
     public List<StockPrice> getStockData(@RequestParam String symbol, 
