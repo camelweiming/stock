@@ -14,11 +14,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.stock.model.News;
+import com.stock.mapper.NewsMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequiredArgsConstructor
 public class StockController {
 
     private final StockService stockService;
+    private final NewsMapper newsMapper;
+    private static final Logger log = LoggerFactory.getLogger(StockController.class);
 
     @GetMapping("/")
     public String index(Model model) {
@@ -73,22 +80,24 @@ public class StockController {
 
     @GetMapping("/api/get_news")
     @ResponseBody
-    public Map<String, Object> getNews(@RequestParam String date, @RequestParam(defaultValue = "5") int count) {
-        // 模拟数据
-        List<Map<String, String>> newsList = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            Map<String, String> news = new HashMap<>();
-            news.put("title", "股票市场重要新闻 " + (i + 1));
-            news.put("time", date + " " + String.format("%02d:00", i));
-            news.put("content", "这是第" + (i + 1) + "条新闻的详细内容，包含市场分析和预测。");
-            news.put("source", "财经新闻");
-            newsList.add(news);
-        }
+    public Map<String, Object> getNews(
+            @RequestParam String startTime,
+            @RequestParam String endTime,
+            @RequestParam(defaultValue = "5") int count,
+            @RequestParam(defaultValue = "day") String mode) {
+        java.time.LocalDateTime start = java.time.LocalDateTime.parse(startTime.replace(" ", "T"));
+        java.time.LocalDateTime end = java.time.LocalDateTime.parse(endTime.replace(" ", "T"));
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        log.info("getNews参数：startTime={}, endTime={}, count={}, mode={}", start.format(formatter), end.format(formatter), count, mode);
+        List<News> newsList = newsMapper.findNewsByTimeRange(start, end, count);
 
         Map<String, Object> response = new HashMap<>();
         response.put("code", 0);
         response.put("message", "success");
         response.put("data", newsList);
+        response.put("mode", mode);
+        response.put("startTime", startTime);
+        response.put("endTime", endTime);
         return response;
     }
 } 

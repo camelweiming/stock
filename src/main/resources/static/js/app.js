@@ -9,6 +9,8 @@ let chartInitialized = false;
 let newsFetchTimer = null;
 let currentNewsDate = '';
 let currentStockDetail = null;
+let currentNewsRange = null;
+let currentNewsMode = 'day';
 
 // 工具函数
 function showStatus(message) {
@@ -47,6 +49,35 @@ function setMonthInputValue(input, value) {
     } else {
         input.value = '';
     }
+}
+
+// 辅助函数：根据视图类型计算时间区间
+function getTimeRange(date, viewType) {
+    if (viewType === 'day') {
+        return [date, date];
+    } else if (viewType === 'week') {
+        // date为'yyyy-MM-dd'
+        const d = new Date(date);
+        const day = d.getDay() || 7; // 周日为0，转为7
+        const monday = new Date(d);
+        monday.setDate(d.getDate() - day + 1);
+        const sunday = new Date(monday);
+        sunday.setDate(monday.getDate() + 6);
+        return [
+            `${monday.getFullYear()}-${String(monday.getMonth() + 1).padStart(2, '0')}-${String(monday.getDate()).padStart(2, '0')}`,
+            `${sunday.getFullYear()}-${String(sunday.getMonth() + 1).padStart(2, '0')}-${String(sunday.getDate()).padStart(2, '0')}`
+        ];
+    } else if (viewType === 'month') {
+        // date为'yyyy-MM-dd'
+        const d = new Date(date);
+        const first = new Date(d.getFullYear(), d.getMonth(), 1);
+        const last = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+        return [
+            `${first.getFullYear()}-${String(first.getMonth() + 1).padStart(2, '0')}-${String(first.getDate()).padStart(2, '0')}`,
+            `${last.getFullYear()}-${String(last.getMonth() + 1).padStart(2, '0')}-${String(last.getDate()).padStart(2, '0')}`
+        ];
+    }
+    return [date, date];
 }
 
 // 图表相关函数
@@ -116,8 +147,9 @@ function initializeChart() {
                     dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
                 }
                 showStatus(`日期: ${dateStr} 开盘: ${price.open} 最高: ${price.high} 最低: ${price.low} 收盘: ${price.close}`);
-                // 传递详情
-                fetchNews(dateStr, price);
+                // 计算区间并传递
+                const dateRange = getTimeRange(dateStr, currentView);
+                fetchNews(dateRange, price, currentView);
                 break;
             }
         }
@@ -321,11 +353,15 @@ function initialize() {
 window.onload = initialize;
 
 // 新闻相关函数
-function fetchNews(date, stockDetail) {
-    currentNewsDate = date;
+function fetchNews(dateRange, stockDetail, viewType = 'day') {
+    let startTime = dateRange[0] + ' 00:00:00';
+    let endTime = dateRange[1] + ' 23:59:59';
+    currentNewsDate = dateRange[0];
     currentStockDetail = stockDetail;
+    currentNewsRange = dateRange;
+    currentNewsMode = viewType;
     updateNewsDateHeader();
-    fetch(`/api/get_news?date=${date}&count=5`)
+    fetch(`/api/get_news?startTime=${encodeURIComponent(startTime)}&endTime=${encodeURIComponent(endTime)}&count=5&mode=${viewType}`)
         .then(response => response.json())
         .then(data => {
             if (data.code === 0) {
@@ -353,12 +389,16 @@ function updateNewsDateHeader() {
         newsDateHeader.style.borderRadius = '6px';
         newsContainer.insertBefore(newsDateHeader, newsContainer.children[1]);
     }
-    if (currentNewsDate && currentStockDetail) {
+    if (currentNewsRange && currentStockDetail) {
         const isUp = Number(currentStockDetail.close) > Number(currentStockDetail.open);
         newsDateHeader.style.background = isUp ? '#ffeaea' : '#eaffea';
         newsDateHeader.style.color = isUp ? '#d93030' : '#219653';
+        let rangeStr = currentNewsRange[0];
+        if (currentNewsRange[0] !== currentNewsRange[1]) {
+            rangeStr = `${currentNewsRange[0]} ~ ${currentNewsRange[1]}`;
+        }
         newsDateHeader.innerHTML = `
-            <div>日期：${currentNewsDate}</div>
+            <div>区间：${rangeStr}（${currentNewsMode === 'day' ? '日' : currentNewsMode === 'week' ? '周' : '月'}视图）</div>
             <div style="margin-top:4px;">开盘：${currentStockDetail.open}　收盘：${currentStockDetail.close}</div>
             <div style="margin-top:2px;">最高：${currentStockDetail.high}　最低：${currentStockDetail.low}</div>
         `;
@@ -390,5 +430,7 @@ function clearNews() {
     newsListElement.innerHTML = '';
     currentNewsDate = '';
     currentStockDetail = null;
+    currentNewsRange = null;
+    currentNewsMode = 'day';
     updateNewsDateHeader();
 } 
