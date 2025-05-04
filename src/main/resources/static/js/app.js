@@ -398,7 +398,7 @@ function updateNewsDateHeader() {
             rangeStr = `${currentNewsRange[0]} ~ ${currentNewsRange[1]}`;
         }
         newsDateHeader.innerHTML = `
-            <div>区间：${rangeStr}（${currentNewsMode === 'day' ? '日' : currentNewsMode === 'week' ? '周' : '月'}视图）</div>
+            <div>时间：${rangeStr}</div>
             <div style="margin-top:4px;">开盘：${currentStockDetail.open}　收盘：${currentStockDetail.close}</div>
             <div style="margin-top:2px;">最高：${currentStockDetail.high}　最低：${currentStockDetail.low}</div>
         `;
