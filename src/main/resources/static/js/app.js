@@ -6,6 +6,9 @@ let isLoading = false;
 let chartInstance = null;
 let candlestickSeriesMap = {};
 let chartInitialized = false;
+let newsFetchTimer = null;
+let currentNewsDate = '';
+let currentStockDetail = null;
 
 // 工具函数
 function showStatus(message) {
@@ -48,6 +51,7 @@ function setMonthInputValue(input, value) {
 
 // 图表相关函数
 function initializeChart() {
+    console.log('开始初始化图表');
     const chartContainer = document.getElementById('stockChart');
     chartInstance = LightweightCharts.createChart(chartContainer, {
         width: chartContainer.offsetWidth,
@@ -62,6 +66,14 @@ function initializeChart() {
         },
         crosshair: {
             mode: LightweightCharts.CrosshairMode.Normal,
+            vertLine: {
+                visible: true,
+                labelVisible: true,
+            },
+            horzLine: {
+                visible: true,
+                labelVisible: true,
+            }
         },
         rightPriceScale: {
             borderColor: '#D2D2D7',
@@ -72,7 +84,7 @@ function initializeChart() {
         },
         timeScale: {
             borderColor: '#D2D2D7',
-            timeVisible: false,
+            timeVisible: true,
             secondsVisible: false,
             tickMarkFormatter: (time) => {
                 if (typeof time === 'string') return time;
@@ -87,6 +99,34 @@ function initializeChart() {
         }
     });
 
+    chartInstance.subscribeClick(param => {
+        if (!param.time) {
+            hideStatus();
+            clearNews();
+            return;
+        }
+        let found = false;
+        for (const s of Object.values(candlestickSeriesMap)) {
+            const price = param.seriesData ? param.seriesData.get(s) : null;
+            if (price) {
+                found = true;
+                let dateStr = '';
+                if (typeof param.time === 'number') {
+                    const d = new Date(param.time * 1000);
+                    dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                }
+                showStatus(`日期: ${dateStr} 开盘: ${price.open} 最高: ${price.high} 最低: ${price.low} 收盘: ${price.close}`);
+                // 传递详情
+                fetchNews(dateStr, price);
+                break;
+            }
+        }
+        if (!found) {
+            hideStatus();
+            clearNews();
+        }
+    });
+
     window.addEventListener('resize', () => {
         chartInstance.applyOptions({
             width: chartContainer.offsetWidth,
@@ -95,6 +135,7 @@ function initializeChart() {
     });
 
     chartInitialized = true;
+    console.log('图表初始化完成');
 }
 
 function updateChart(startOverride, endOverride) {
@@ -154,17 +195,17 @@ function updateChart(startOverride, endOverride) {
                         item.tradeDate !== undefined
                     )
                     .map(item => {
-                        let timeStr;
+                        let timeVal;
                         if (typeof item.tradeDate === 'object' && item.tradeDate !== null) {
                             const { year, month, day } = item.tradeDate;
-                            timeStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                            timeVal = Math.floor(new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`).getTime() / 1000);
                         } else {
                             const date = new Date(item.tradeDate);
-                            timeStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+                            timeVal = Math.floor(date.getTime() / 1000);
                         }
-                        allDates.push(timeStr);
+                        allDates.push(timeVal);
                         return {
-                            time: timeStr,
+                            time: timeVal,
                             open: parseFloat(item.openPrice ?? item.open),
                             high: parseFloat(item.highPrice ?? item.high),
                             low: parseFloat(item.lowPrice ?? item.low),
@@ -181,31 +222,17 @@ function updateChart(startOverride, endOverride) {
                 });
                 
                 candlestickSeriesMap[symbol] = candlestickSeries;
-                const sortedData = prices.sort((a, b) => a.time.localeCompare(b.time));
+                const sortedData = prices.sort((a, b) => a.time - b.time);
+                console.log('设置K线数据:', sortedData);
                 candlestickSeries.setData(sortedData);
-
-                chartInstance.subscribeCrosshairMove(param => {
-                    if (param.time && param.seriesPrices) {
-                        const price = param.seriesPrices.get(candlestickSeries);
-                        if (price) {
-                            let dateStr = '';
-                            if (typeof param.time === 'string') {
-                                dateStr = param.time;
-                            } else if (typeof param.time === 'object' && param.time.year && param.time.month && param.time.day) {
-                                dateStr = `${param.time.year}-${String(param.time.month).padStart(2, '0')}-${String(param.time.day).padStart(2, '0')}`;
-                            }
-                            showStatus(`日期: ${dateStr} 开盘: ${price.open} 最高: ${price.high} 最低: ${price.low} 收盘: ${price.close}`);
-                        }
-                    } else {
-                        hideStatus();
-                    }
-                });
             });
 
             if (allDates.length > 0) {
                 allDates.sort();
-                const minMonth = allDates[0].slice(0, 7);
-                const maxMonth = allDates[allDates.length - 1].slice(0, 7);
+                const minDate = new Date(allDates[0] * 1000);
+                const maxDate = new Date(allDates[allDates.length - 1] * 1000);
+                const minMonth = `${minDate.getFullYear()}-${String(minDate.getMonth() + 1).padStart(2, '0')}`;
+                const maxMonth = `${maxDate.getFullYear()}-${String(maxDate.getMonth() + 1).padStart(2, '0')}`;
                 
                 const startDateInput = document.getElementById('startDate');
                 const endDateInput = document.getElementById('endDate');
@@ -291,4 +318,77 @@ function initialize() {
 }
 
 // 页面加载完成后初始化
-window.onload = initialize; 
+window.onload = initialize;
+
+// 新闻相关函数
+function fetchNews(date, stockDetail) {
+    currentNewsDate = date;
+    currentStockDetail = stockDetail;
+    updateNewsDateHeader();
+    fetch(`/api/get_news?date=${date}&count=5`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.code === 0) {
+                displayNews(data.data);
+            } else {
+                console.error('获取新闻失败:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('获取新闻出错:', error);
+        });
+}
+
+function updateNewsDateHeader() {
+    let newsDateHeader = document.getElementById('newsDateHeader');
+    if (!newsDateHeader) {
+        const newsContainer = document.querySelector('.news-container');
+        newsDateHeader = document.createElement('div');
+        newsDateHeader.id = 'newsDateHeader';
+        newsDateHeader.style.textAlign = 'left';
+        newsDateHeader.style.fontWeight = 'normal';
+        newsDateHeader.style.fontSize = '15px';
+        newsDateHeader.style.padding = '10px 16px 8px 16px';
+        newsDateHeader.style.marginBottom = '8px';
+        newsDateHeader.style.borderRadius = '6px';
+        newsContainer.insertBefore(newsDateHeader, newsContainer.children[1]);
+    }
+    if (currentNewsDate && currentStockDetail) {
+        const isUp = Number(currentStockDetail.close) > Number(currentStockDetail.open);
+        newsDateHeader.style.background = isUp ? '#ffeaea' : '#eaffea';
+        newsDateHeader.style.color = isUp ? '#d93030' : '#219653';
+        newsDateHeader.innerHTML = `
+            <div>日期：${currentNewsDate}</div>
+            <div style="margin-top:4px;">开盘：${currentStockDetail.open}　收盘：${currentStockDetail.close}</div>
+            <div style="margin-top:2px;">最高：${currentStockDetail.high}　最低：${currentStockDetail.low}</div>
+        `;
+    } else {
+        newsDateHeader.textContent = '';
+        newsDateHeader.style.background = '';
+        newsDateHeader.style.color = '';
+    }
+}
+
+function displayNews(newsList) {
+    const newsListElement = document.getElementById('newsList');
+    newsListElement.innerHTML = '';
+    newsList.forEach(news => {
+        const newsItem = document.createElement('div');
+        newsItem.className = 'news-item';
+        newsItem.innerHTML = `
+            <h4>${news.title}</h4>
+            <div class="time">${news.time}</div>
+            <div class="content">${news.content}</div>
+            <div class="source">来源: ${news.source}</div>
+        `;
+        newsListElement.appendChild(newsItem);
+    });
+}
+
+function clearNews() {
+    const newsListElement = document.getElementById('newsList');
+    newsListElement.innerHTML = '';
+    currentNewsDate = '';
+    currentStockDetail = null;
+    updateNewsDateHeader();
+} 
