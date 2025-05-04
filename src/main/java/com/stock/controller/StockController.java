@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,10 +41,26 @@ public class StockController {
 
     @GetMapping("/api/stock-data")
     @ResponseBody
-    public List<StockPrice> getStockData(@RequestParam String symbol, 
-                                        @RequestParam(required = false) String months) {
-        LocalDate startDate = LocalDate.now().minusMonths(months != null ? Long.parseLong(months) : 6);
-        return stockService.getStockData(symbol, startDate);
+    public List<StockPrice> getStockData(@RequestParam String[] symbols, 
+                                        @RequestParam(required = false) String view,
+                                        @RequestParam String startDate,
+                                        @RequestParam String endDate) {
+        LocalDate start = LocalDate.parse(startDate);
+        LocalDate end = LocalDate.parse(endDate);
+        List<StockPrice> result = new ArrayList<>();
+        
+        for (String symbol : symbols) {
+            if (view != null) {
+                result.addAll(stockService.getStockDataByView(symbol, start, view));
+            } else {
+                result.addAll(stockService.getStockData(symbol, start));
+            }
+        }
+        
+        // 过滤掉结束日期之后的数据
+        return result.stream()
+                .filter(price -> !price.getTradeDate().isAfter(end))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/api/symbols")

@@ -25,4 +25,16 @@ public interface StockPriceMapper {
 
     @Select("SELECT MAX(trade_date) FROM stock_price WHERE symbol = #{symbol}")
     LocalDate findLatestTradeDate(@Param("symbol") String symbol);
+
+    @Select("SELECT * FROM stock_price WHERE symbol = #{symbol} AND trade_date >= #{startDate} " +
+            "AND DAYOFWEEK(trade_date) = 6 " + // 周五
+            "ORDER BY trade_date")
+    List<StockPrice> findWeeklyData(@Param("symbol") String symbol, 
+                                   @Param("startDate") LocalDate startDate);
+
+    @Select("SELECT * FROM stock_price WHERE symbol = #{symbol} AND trade_date >= #{startDate} " +
+            "AND DAY(trade_date) = DAY(LAST_DAY(trade_date)) " + // 每月最后一天
+            "ORDER BY trade_date")
+    List<StockPrice> findMonthlyData(@Param("symbol") String symbol, 
+                                    @Param("startDate") LocalDate startDate);
 } 

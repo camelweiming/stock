@@ -130,6 +130,18 @@ public class StockService {
         return stockPriceMapper.findBySymbolAndDateRange(symbol, startDate);
     }
 
+    public List<StockPrice> getStockDataByView(String symbol, LocalDate startDate, String view) {
+        log.info("Getting {} view data for symbol: {} from date: {}", view, symbol, startDate);
+        switch (view) {
+            case "week":
+                return stockPriceMapper.findWeeklyData(symbol, startDate);
+            case "month":
+                return stockPriceMapper.findMonthlyData(symbol, startDate);
+            default: // "day"
+                return stockPriceMapper.findBySymbolAndDateRange(symbol, startDate);
+        }
+    }
+
     public List<String> getAllSymbols() {
         log.info("Getting all symbols: {}", symbols);
         return symbols != null ? symbols : new ArrayList<>();
