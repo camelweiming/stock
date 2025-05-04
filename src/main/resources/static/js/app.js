@@ -59,13 +59,15 @@ function getTimeRange(date, viewType) {
         // date为'yyyy-MM-dd'
         const d = new Date(date);
         const day = d.getDay() || 7; // 周日为0，转为7
-        const monday = new Date(d);
-        monday.setDate(d.getDate() - day + 1);
-        const sunday = new Date(monday);
-        sunday.setDate(monday.getDate() + 6);
+        // 计算上个周末的日期（周六）
+        const lastSaturday = new Date(d);
+        lastSaturday.setDate(d.getDate() - day - 1);
+        // 计算本周五的日期
+        const thisFriday = new Date(d);
+        thisFriday.setDate(d.getDate() - day + 5);
         return [
-            `${monday.getFullYear()}-${String(monday.getMonth() + 1).padStart(2, '0')}-${String(monday.getDate()).padStart(2, '0')}`,
-            `${sunday.getFullYear()}-${String(sunday.getMonth() + 1).padStart(2, '0')}-${String(sunday.getDate()).padStart(2, '0')}`
+            `${lastSaturday.getFullYear()}-${String(lastSaturday.getMonth() + 1).padStart(2, '0')}-${String(lastSaturday.getDate()).padStart(2, '0')}`,
+            `${thisFriday.getFullYear()}-${String(thisFriday.getMonth() + 1).padStart(2, '0')}-${String(thisFriday.getDate()).padStart(2, '0')}`
         ];
     } else if (viewType === 'month') {
         // date为'yyyy-MM-dd'
@@ -84,90 +86,129 @@ function getTimeRange(date, viewType) {
 function initializeChart() {
     console.log('开始初始化图表');
     const chartContainer = document.getElementById('stockChart');
-    chartInstance = LightweightCharts.createChart(chartContainer, {
-        width: chartContainer.offsetWidth,
-        height: chartContainer.offsetHeight,
-        layout: {
-            background: { color: '#F5F5F7' },
-            textColor: '#2C3E50',
-        },
-        grid: {
-            vertLines: { color: '#D2D2D7' },
-            horzLines: { color: '#D2D2D7' },
-        },
-        crosshair: {
-            mode: LightweightCharts.CrosshairMode.Normal,
-            vertLine: {
-                visible: true,
-                labelVisible: true,
-            },
-            horzLine: {
-                visible: true,
-                labelVisible: true,
-            }
-        },
-        rightPriceScale: {
-            borderColor: '#D2D2D7',
-            scaleMargins: {
-                top: 0.1,
-                bottom: 0.1,
-            },
-        },
-        timeScale: {
-            borderColor: '#D2D2D7',
-            timeVisible: true,
-            secondsVisible: false,
-            tickMarkFormatter: (time) => {
-                if (typeof time === 'string') return time;
-                if (typeof time === 'object' && time.year && time.month && time.day) {
-                    return `${time.year}-${String(time.month).padStart(2, '0')}-${String(time.day).padStart(2, '0')}`;
-                }
-                return '';
-            }
-        },
-        localization: {
-            dateFormat: 'yyyy-MM-dd'
-        }
+    if (!chartContainer) {
+        console.error('找不到图表容器');
+        return;
+    }
+    
+    const wrapper = chartContainer.parentElement;
+    if (!wrapper) {
+        console.error('找不到图表包装器');
+        return;
+    }
+    
+    const containerWidth = wrapper.offsetWidth;
+    const containerHeight = wrapper.offsetHeight;
+    
+    console.log('图表容器尺寸:', {
+        wrapperWidth: wrapper.offsetWidth,
+        wrapperHeight: wrapper.offsetHeight,
+        chartWidth: containerWidth,
+        chartHeight: containerHeight
     });
-
-    chartInstance.subscribeClick(param => {
-        if (!param.time) {
-            hideStatus();
-            clearNews();
-            return;
-        }
-        let found = false;
-        for (const s of Object.values(candlestickSeriesMap)) {
-            const price = param.seriesData ? param.seriesData.get(s) : null;
-            if (price) {
-                found = true;
-                let dateStr = '';
-                if (typeof param.time === 'number') {
-                    const d = new Date(param.time * 1000);
-                    dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    
+    try {
+        chartInstance = LightweightCharts.createChart(chartContainer, {
+            width: containerWidth,
+            height: containerHeight,
+            layout: {
+                background: { color: '#F5F5F7' },
+                textColor: '#000000',
+            },
+            grid: {
+                vertLines: { color: '#D2D2D7' },
+                horzLines: { color: '#D2D2D7' },
+            },
+            crosshair: {
+                mode: LightweightCharts.CrosshairMode.Normal,
+                vertLine: {
+                    visible: true,
+                    labelVisible: true,
+                },
+                horzLine: {
+                    visible: true,
+                    labelVisible: true,
                 }
-                showStatus(`日期: ${dateStr} 开盘: ${price.open} 最高: ${price.high} 最低: ${price.low} 收盘: ${price.close}`);
-                // 计算区间并传递
-                const dateRange = getTimeRange(dateStr, currentView);
-                fetchNews(dateRange, price, currentView);
-                break;
+            },
+            rightPriceScale: {
+                borderColor: '#D2D2D7',
+                scaleMargins: {
+                    top: 0.1,
+                    bottom: 0.1,
+                },
+            },
+            timeScale: {
+                borderColor: '#D2D2D7',
+                timeVisible: true,
+                secondsVisible: false,
+                tickMarkFormatter: (time) => {
+                    const d = new Date(time * 1000);
+                    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                },
+                rightOffset: 12,
+                barSpacing: 6,
+                fixLeftEdge: true,
+                lockVisibleTimeRangeOnResize: true,
+                rightBarStaysOnScroll: true,
+                borderVisible: true,
+                visible: true,
+                height: 40,
+            },
+            localization: {
+                dateFormat: 'yyyy-MM-dd'
             }
-        }
-        if (!found) {
-            hideStatus();
-            clearNews();
-        }
-    });
-
-    window.addEventListener('resize', () => {
-        chartInstance.applyOptions({
-            width: chartContainer.offsetWidth,
-            height: chartContainer.offsetHeight
         });
-    });
 
-    chartInitialized = true;
-    console.log('图表初始化完成');
+        chartInstance.subscribeClick(param => {
+            if (!param.time) {
+                hideStatus();
+                clearNews();
+                return;
+            }
+            let found = false;
+            for (const s of Object.values(candlestickSeriesMap)) {
+                const price = param.seriesData ? param.seriesData.get(s) : null;
+                if (price) {
+                    found = true;
+                    let dateStr = '';
+                    if (typeof param.time === 'number') {
+                        const d = new Date(param.time * 1000);
+                        dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                    }
+                    showStatus(`日期: ${dateStr} 开盘: ${price.open} 最高: ${price.high} 最低: ${price.low} 收盘: ${price.close}`);
+                    const dateRange = getTimeRange(dateStr, currentView);
+                    fetchNews(dateRange, price, currentView);
+                    break;
+                }
+            }
+            if (!found) {
+                hideStatus();
+                clearNews();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            const containerWidth = wrapper.offsetWidth;
+            const containerHeight = wrapper.offsetHeight;
+            
+            console.log('调整图表尺寸:', {
+                wrapperWidth: wrapper.offsetWidth,
+                wrapperHeight: wrapper.offsetHeight,
+                chartWidth: containerWidth,
+                chartHeight: containerHeight
+            });
+            
+            chartInstance.applyOptions({
+                width: containerWidth,
+                height: containerHeight
+            });
+        });
+
+        chartInitialized = true;
+        console.log('图表初始化完成');
+    } catch (error) {
+        console.error('图表初始化失败:', error);
+    }
 }
 
 function updateChart(startOverride, endOverride) {
@@ -206,78 +247,89 @@ function updateChart(startOverride, endOverride) {
                 return acc;
             }, {});
 
+            // 确保图表已经初始化
             if (!chartInitialized) {
                 initializeChart();
             }
 
-            Object.values(candlestickSeriesMap).forEach(series => {
-                chartInstance.removeSeries(series);
-            });
-            candlestickSeriesMap = {};
+            // 等待图表初始化完成
+            setTimeout(() => {
+                if (!chartInstance) {
+                    console.error('图表实例未创建');
+                    hideStatus();
+                    isLoading = false;
+                    return;
+                }
 
-            let allDates = [];
-
-            Object.entries(groupedData).forEach(([symbol, items]) => {
-                const prices = items
-                    .filter(item => !('M_' in item) &&
-                        (typeof (item.open ?? item.openPrice) === 'number' || !isNaN(parseFloat(item.open ?? item.openPrice))) &&
-                        (typeof (item.high ?? item.highPrice) === 'number' || !isNaN(parseFloat(item.high ?? item.highPrice))) &&
-                        (typeof (item.low ?? item.lowPrice) === 'number' || !isNaN(parseFloat(item.low ?? item.lowPrice))) &&
-                        (typeof (item.close ?? item.closePrice) === 'number' || !isNaN(parseFloat(item.close ?? item.closePrice))) &&
-                        item.tradeDate !== undefined
-                    )
-                    .map(item => {
-                        let timeVal;
-                        if (typeof item.tradeDate === 'object' && item.tradeDate !== null) {
-                            const { year, month, day } = item.tradeDate;
-                            timeVal = Math.floor(new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`).getTime() / 1000);
-                        } else {
-                            const date = new Date(item.tradeDate);
-                            timeVal = Math.floor(date.getTime() / 1000);
-                        }
-                        allDates.push(timeVal);
-                        return {
-                            time: timeVal,
-                            open: parseFloat(item.openPrice ?? item.open),
-                            high: parseFloat(item.highPrice ?? item.high),
-                            low: parseFloat(item.lowPrice ?? item.low),
-                            close: parseFloat(item.closePrice ?? item.close)
-                        };
-                    });
-                
-                const candlestickSeries = chartInstance.addCandlestickSeries({
-                    upColor: '#e74c3c',
-                    downColor: '#27ae60',
-                    borderVisible: false,
-                    wickUpColor: '#e74c3c',
-                    wickDownColor: '#27ae60',
+                Object.values(candlestickSeriesMap).forEach(series => {
+                    chartInstance.removeSeries(series);
                 });
-                
-                candlestickSeriesMap[symbol] = candlestickSeries;
-                const sortedData = prices.sort((a, b) => a.time - b.time);
-                console.log('设置K线数据:', sortedData);
-                candlestickSeries.setData(sortedData);
-            });
+                candlestickSeriesMap = {};
 
-            if (allDates.length > 0) {
-                allDates.sort();
-                const minDate = new Date(allDates[0] * 1000);
-                const maxDate = new Date(allDates[allDates.length - 1] * 1000);
-                const minMonth = `${minDate.getFullYear()}-${String(minDate.getMonth() + 1).padStart(2, '0')}`;
-                const maxMonth = `${maxDate.getFullYear()}-${String(maxDate.getMonth() + 1).padStart(2, '0')}`;
-                
-                const startDateInput = document.getElementById('startDate');
-                const endDateInput = document.getElementById('endDate');
-                setMonthInputValue(startDateInput, minMonth);
-                setMonthInputValue(endDateInput, maxMonth);
-                
-                chartInstance.timeScale().fitContent();
-            }
+                let allDates = [];
 
-            loadedStartDate = startDate;
-            loadedEndDate = endDate;
-            isLoading = false;
-            hideStatus();
+                Object.entries(groupedData).forEach(([symbol, items]) => {
+                    const prices = items
+                        .filter(item => !('M_' in item) &&
+                            (typeof (item.open ?? item.openPrice) === 'number' || !isNaN(parseFloat(item.open ?? item.openPrice))) &&
+                            (typeof (item.high ?? item.highPrice) === 'number' || !isNaN(parseFloat(item.high ?? item.highPrice))) &&
+                            (typeof (item.low ?? item.lowPrice) === 'number' || !isNaN(parseFloat(item.low ?? item.lowPrice))) &&
+                            (typeof (item.close ?? item.closePrice) === 'number' || !isNaN(parseFloat(item.close ?? item.closePrice))) &&
+                            item.tradeDate !== undefined
+                        )
+                        .map(item => {
+                            let timeVal;
+                            if (typeof item.tradeDate === 'object' && item.tradeDate !== null) {
+                                const { year, month, day } = item.tradeDate;
+                                timeVal = Math.floor(new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`).getTime() / 1000);
+                            } else {
+                                const date = new Date(item.tradeDate);
+                                timeVal = Math.floor(date.getTime() / 1000);
+                            }
+                            allDates.push(timeVal);
+                            return {
+                                time: timeVal,
+                                open: parseFloat(item.openPrice ?? item.open),
+                                high: parseFloat(item.highPrice ?? item.high),
+                                low: parseFloat(item.lowPrice ?? item.low),
+                                close: parseFloat(item.closePrice ?? item.close)
+                            };
+                        });
+                    
+                    const candlestickSeries = chartInstance.addCandlestickSeries({
+                        upColor: '#e74c3c',
+                        downColor: '#27ae60',
+                        borderVisible: false,
+                        wickUpColor: '#e74c3c',
+                        wickDownColor: '#27ae60',
+                    });
+                    
+                    candlestickSeriesMap[symbol] = candlestickSeries;
+                    const sortedData = prices.sort((a, b) => a.time - b.time);
+                    console.log('设置K线数据:', sortedData);
+                    candlestickSeries.setData(sortedData);
+                });
+
+                if (allDates.length > 0) {
+                    allDates.sort();
+                    const minDate = new Date(allDates[0] * 1000);
+                    const maxDate = new Date(allDates[allDates.length - 1] * 1000);
+                    const minMonth = `${minDate.getFullYear()}-${String(minDate.getMonth() + 1).padStart(2, '0')}`;
+                    const maxMonth = `${maxDate.getFullYear()}-${String(maxDate.getMonth() + 1).padStart(2, '0')}`;
+                    
+                    const startDateInput = document.getElementById('startDate');
+                    const endDateInput = document.getElementById('endDate');
+                    setMonthInputValue(startDateInput, minMonth);
+                    setMonthInputValue(endDateInput, maxMonth);
+                    
+                    chartInstance.timeScale().fitContent();
+                }
+
+                loadedStartDate = startDate;
+                loadedEndDate = endDate;
+                isLoading = false;
+                hideStatus();
+            }, 100);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -397,10 +449,19 @@ function updateNewsDateHeader() {
         if (currentNewsRange[0] !== currentNewsRange[1]) {
             rangeStr = `${currentNewsRange[0]} ~ ${currentNewsRange[1]}`;
         }
+        // 只保留日期部分
+        rangeStr = rangeStr.replace(/\s*00:00:00$/, '');
         newsDateHeader.innerHTML = `
-            <div>时间：${rangeStr}</div>
-            <div style="margin-top:4px;">开盘：${currentStockDetail.open}　收盘：${currentStockDetail.close}</div>
-            <div style="margin-top:2px;">最高：${currentStockDetail.high}　最低：${currentStockDetail.low}</div>
+            <div class="header-row">时间：${rangeStr}</div>
+            <div class="divider"></div>
+            <div class="stock-row">
+                <span>开盘：${currentStockDetail.open}</span>
+                <span>收盘：${currentStockDetail.close}</span>
+            </div>
+            <div class="stock-row">
+                <span>最高：${currentStockDetail.high}</span>
+                <span>最低：${currentStockDetail.low}</span>
+            </div>
         `;
     } else {
         newsDateHeader.textContent = '';
