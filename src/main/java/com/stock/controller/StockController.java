@@ -2,11 +2,13 @@ package com.stock.controller;
 
 import com.stock.model.StockPrice;
 import com.stock.service.StockService;
+import com.stock.service.SymbolService;
+import com.stock.service.impl.StockServiceImpl;
+import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -15,17 +17,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.stock.model.News;
-import com.stock.mapper.NewsMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequiredArgsConstructor
 public class StockController {
-
-    private final StockService stockService;
-    private final NewsMapper newsMapper;
+    @Resource
+    private StockService stockService;
+    @Resource
+    private SymbolService symbolService;
     private static final Logger log = LoggerFactory.getLogger(StockController.class);
 
     @GetMapping("/api/stock/data")
@@ -43,21 +43,14 @@ public class StockController {
 
         // 过滤掉结束日期之后的数据
         List<StockPrice> filteredData = stockData.stream().filter(price -> !price.getTradeDate().isAfter(end)).collect(Collectors.toList());
-
-        // 获取新闻数据
-//        LocalDateTime startTime = start.atStartOfDay();
-//        LocalDateTime endTime = end.atTime(23, 59, 59);
-//        List<News> newsList = newsMapper.findNewsByTimeRange(startTime, endTime, 5);
-
         Map<String, Object> response = new HashMap<>();
         response.put("stockData", filteredData);
-//        response.put("newsList", newsList);
         return response;
     }
 
     @GetMapping("/api/symbols")
     public Map<String, Object> getSymbols() {
-        List<String> symbols = stockService.getAllSymbols();
+        List<String> symbols = symbolService.getAllSymbols();
         Map<String, Object> response = new HashMap<>();
         response.put("symbols", symbols);
         response.put("defaultSymbol", symbols.isEmpty() ? "" : symbols.get(0));
