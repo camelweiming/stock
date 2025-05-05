@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import ChartContainer from '../components/ChartContainer.vue'
 import Settings from '../components/Settings.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: ChartContainer
   },
   {
     path: '/settings',

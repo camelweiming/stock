@@ -7,12 +7,8 @@
           <p>专业的股票数据分析和可视化工具</p>
         </div>
         <div class="d-flex gap-3">
-          <button class="btn btn-primary" @click="initializeData">
-            <i class="bi bi-download"></i> 初始化数据
-          </button>
-          <button class="btn btn-success" @click="incrementalUpdate">
-            <i class="bi bi-arrow-clockwise"></i> 增量更新
-          </button>
+          <router-link to="/" class="nav-link">首页</router-link>
+          <router-link to="/settings" class="nav-link">设置</router-link>
         </div>
       </div>
     </div>
@@ -20,13 +16,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
-  name: 'Header',
-  methods: {
-    ...mapActions(['initializeData', 'incrementalUpdate'])
-  }
+  name: 'Header'
 }
 </script>
 
@@ -48,5 +39,21 @@ export default {
   margin: 0.5rem 0 0;
   color: #666;
   font-size: 0.9rem;
+}
+
+.nav-link {
+  color: #495057;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #228be6;
+}
+
+.nav-link.router-link-active {
+  color: #228be6;
 }
 </style> 
