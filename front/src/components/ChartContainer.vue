@@ -10,9 +10,9 @@
     <!-- 右侧主内容区 -->
     <div class="col-md-9">
       <div class="card card-chart">
-        <div class="card-header">
-          <h5 class="card-title">股票K线图</h5>
-        </div>
+<!--        <div class="card-header">-->
+<!--          <h5 class="card-title">股票K线图</h5>-->
+<!--        </div>-->
         <div class="card-body">
           <v-chart
             ref="vchartRef"
