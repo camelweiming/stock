@@ -209,4 +209,22 @@ public class StockService {
         }
         log.info("Incremental data update completed");
     }
+
+    // 获取某一天的详情
+    public StockPrice getStockDetailByDay(String symbol, LocalDate date) {
+        List<StockPrice> list = stockPriceMapper.findBySymbolAndDateRange(symbol, date);
+        return list.stream().filter(p -> p.getTradeDate().equals(date)).findFirst().orElse(null);
+    }
+
+    // 获取某一周的详情（取该周最后一天）
+    public StockPrice getStockDetailByWeek(String symbol, LocalDate date) {
+        List<StockPrice> list = stockPriceMapper.findWeeklyData(symbol, date);
+        return list.stream().filter(p -> p.getTradeDate().equals(date)).findFirst().orElse(null);
+    }
+
+    // 获取某一月的详情（取该月最后一天）
+    public StockPrice getStockDetailByMonth(String symbol, LocalDate date) {
+        List<StockPrice> list = stockPriceMapper.findMonthlyData(symbol, date);
+        return list.stream().filter(p -> p.getTradeDate().equals(date)).findFirst().orElse(null);
+    }
 } 

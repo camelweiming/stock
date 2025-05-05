@@ -97,11 +97,11 @@ const selectedView = computed({
 const dateRange = computed(() => store.state.dateRange)
 const startDate = computed({
   get: () => dateRange.value.start,
-  set: (value) => handleDateRangeChange({ start: value, end: dateRange.value.end })
+  set: (value) => store.commit('updateDateRange', { start: value, end: dateRange.value.end })
 })
 const endDate = computed({
   get: () => dateRange.value.end,
-  set: (value) => handleDateRangeChange({ start: dateRange.value.start, end: value })
+  set: (value) => store.commit('updateDateRange', { start: dateRange.value.start, end: value })
 })
 
 // 事件处理
@@ -116,8 +116,7 @@ const handleViewSelect = (view) => {
   store.dispatch('fetchStockData')
 }
 
-const handleDateRangeChange = (newRange) => {
-  store.commit('updateDateRange', newRange)
+const handleDateRangeChange = () => {
   store.dispatch('fetchStockData')
 }
 

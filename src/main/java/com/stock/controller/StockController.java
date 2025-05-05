@@ -106,4 +106,30 @@ public class StockController {
         response.put("endTime", endTime);
         return response;
     }
+
+    @GetMapping("/api/getDetail")
+    public Map<String, Object> getDetail(@RequestParam String symbol, @RequestParam String date, @RequestParam String view) {
+        // 解析日期
+        LocalDate tradeDate = LocalDate.parse(date);
+        // 根据视图类型获取数据
+        StockPrice detail = null;
+        if ("day".equalsIgnoreCase(view)) {
+            detail = stockService.getStockDetailByDay(symbol, tradeDate);
+        } else if ("week".equalsIgnoreCase(view)) {
+            detail = stockService.getStockDetailByWeek(symbol, tradeDate);
+        } else if ("month".equalsIgnoreCase(view)) {
+            detail = stockService.getStockDetailByMonth(symbol, tradeDate);
+        }
+        Map<String, Object> response = new HashMap<>();
+        if (detail != null) {
+            response.put("symbol", detail.getSymbol());
+            response.put("date", detail.getTradeDate().toString());
+            response.put("openPrice", detail.getOpenPrice());
+            response.put("closePrice", detail.getClosePrice());
+            response.put("highPrice", detail.getHighPrice());
+            response.put("lowPrice", detail.getLowPrice());
+            // 可补充更多字段
+        }
+        return response;
+    }
 } 
