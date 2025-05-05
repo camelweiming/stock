@@ -9,10 +9,10 @@
           <div class="update-item">
             <h6>全量更新</h6>
             <p class="text-muted">更新所有股票的历史数据，可能需要较长时间</p>
-            <button 
-              class="btn btn-primary" 
-              @click="handleFullUpdate"
-              :disabled="isUpdating"
+            <button
+                class="btn btn-primary"
+                @click="handleFullUpdate"
+                :disabled="isUpdating"
             >
               {{ isFullUpdating ? '更新中...' : '开始全量更新' }}
             </button>
@@ -20,10 +20,10 @@
           <div class="update-item">
             <h6>增量更新</h6>
             <p class="text-muted">更新最近的数据，耗时较短</p>
-            <button 
-              class="btn btn-primary" 
-              @click="handleIncrementalUpdate"
-              :disabled="isUpdating"
+            <button
+                class="btn btn-primary"
+                @click="handleIncrementalUpdate"
+                :disabled="isUpdating"
             >
               {{ isIncrementalUpdating ? '更新中...' : '开始增量更新' }}
             </button>
@@ -35,9 +35,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import axios from 'axios'
-import { ElMessage } from 'element-plus'
+import {ref, computed} from 'vue'
+import {ElMessage} from 'element-plus'
 
 const isFullUpdating = ref(false)
 const isIncrementalUpdating = ref(false)
@@ -118,4 +118,4 @@ const handleIncrementalUpdate = async () => {
 .btn:disabled {
   cursor: not-allowed;
 }
-</style> 
+</style>

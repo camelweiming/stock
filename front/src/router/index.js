@@ -3,16 +3,8 @@ import ChartContainer from '../components/ChartContainer.vue'
 import Settings from '../components/Settings.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: ChartContainer
-  },
-  {
-    path: '/settings',
-    name: 'Settings',
-    component: Settings
-  }
+  { path: '/', name: 'Home', component: ChartContainer },
+  { path: '/settings', name: 'Settings', component: Settings }
 ]
 
 const router = createRouter({

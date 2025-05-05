@@ -2,7 +2,7 @@
   <div class="app-container">
     <Header />
     <main class="app-main">
-      <ChartContainer />
+      <router-view></router-view>
     </main>
   </div>
 </template>
