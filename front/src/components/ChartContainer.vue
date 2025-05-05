@@ -4,22 +4,22 @@
     <div class="col-md-3">
       <div class="card card-sidebar">
         <!-- 这里可以放置你的菜单、股票选择等内容 -->
-        <ControlPanel />
+        <ControlPanel/>
       </div>
     </div>
     <!-- 右侧主内容区 -->
     <div class="col-md-9">
       <div class="card card-chart">
-<!--        <div class="card-header">-->
-<!--          <h5 class="card-title">股票K线图</h5>-->
-<!--        </div>-->
+        <!--        <div class="card-header">-->
+        <!--          <h5 class="card-title">股票K线图</h5>-->
+        <!--        </div>-->
         <div class="card-body">
           <v-chart
-            ref="vchartRef"
-            :option="option"
-            autoresize
-            style="width:100%;height:500px;min-height:400px;"
-            @vue:mounted="onMountedChart"
+              ref="vchartRef"
+              :option="option"
+              autoresize
+              style="width:100%;height:500px;min-height:400px;"
+              @vue:mounted="onMountedChart"
           />
         </div>
       </div>
@@ -36,22 +36,23 @@
           <div v-if="loadingNews" class="loading">加载新闻中...</div>
           <div v-else-if="newsList.length === 0" class="news-item">暂无相关新闻</div>
           <div
-            v-for="(news, index) in newsList"
-            :key="index"
-            class="news-item"
+              v-for="(news, index) in newsList"
+              :key="index"
+              class="news-item"
           >
-            <div class="news-header">
-              <span class="news-title">{{ news.title }}</span>
-              <span class="news-meta">{{ formatTime(news.time) }} | {{ news.source }}</span>
+            <h3 class="news-item-title">{{ news.title }}</h3>
+            <div class="news-info">
+              <div class="news-time">{{ formatTime(news.time) }}</div>
+              <div class="news-source">{{ news.source }}</div>
             </div>
-            <div class="news-content">
+            <div class="news-item-content">
               <span v-if="!expanded[index]">
-                {{ news.content.slice(0, 10) }}
-                <span v-if="news.content.length > 10" class="expand-btn" @click="expand(index)">...展开</span>
+                {{ news.content.slice(0, 500) }}
+                <span v-if="news.content.length > 10" class="toggle-btn" @click="expand(index)">...展开</span>
               </span>
               <span v-else>
                 {{ news.content }}
-                <span class="expand-btn" @click="collapse(index)">收起</span>
+                <span class="toggle-btn" @click="collapse(index)">收起</span>
               </span>
             </div>
           </div>
@@ -156,7 +157,7 @@ const expanded = ref({}) // 控制每条新闻的展开/收起
 // 格式化时间
 const formatTime = (t) => {
   if (!t) return ''
-  return t.length > 16 ? t.slice(0, 16) : t
+  return t.length > 16 ? t.slice(0, 10) : t
 }
 
 // 展开/收起正文
@@ -191,7 +192,7 @@ function fetchNewsByChartWindow() {
   const chartInstance = vchartRef.value?.chart
   if (!chartInstance || !option.value.xAxis.data.length) return
   const chartOption = typeof chartInstance.getOption === 'function' ? chartInstance.getOption() : null
-  if (!chartOption || !chartOption.dataZoom || !Array.isArray(chartOption.dataZoom) || chartOption.dataZoom.length === 0) return
+  if (!chartOption || !Array.isArray(chartOption.dataZoom) || chartOption.dataZoom.length === 0) return
   const dataZoom = chartOption.dataZoom[0]
   let startIdx = Math.round((dataZoom?.start ?? 0) / 100 * (option.value.xAxis.data.length - 1)) || 0
   let endIdx = Math.round((dataZoom?.end ?? 100) / 100 * (option.value.xAxis.data.length - 1)) || (option.value.xAxis.data.length - 1)
