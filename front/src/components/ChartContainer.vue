@@ -86,7 +86,21 @@ const DEBOUNCE_DELAY = 800; // Adjust this value as needed
 
 const option = ref({
   title: {text: '股票K线图', left: 'center'},
-  tooltip: {trigger: 'axis'},
+  tooltip: {
+    trigger: 'axis',
+    formatter: function (params) {
+      var param = params[0];
+      var open = param.value[0];
+      var close = param.value[1];
+      var low = param.value[2];
+      var high = param.value[3];
+      return `日期：${param.name}<br/>
+                            开盘价：${open}<br/>
+                            收盘价：${close}<br/>
+                            最低价：${low}<br/>
+                            最高价：${high}`;
+    }
+  },
   grid: {left: '5%', right: '5%', bottom: '10%', top: 50},
   xAxis: {
     type: 'category',
