@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-import {ref, computed, watch, nextTick, onMounted} from 'vue'
+import {ref, computed, watch, nextTick, onMounted, onUnmounted} from 'vue'
 import {useStore} from 'vuex'
 import axios from 'axios'
 import VChart from 'vue-echarts'
@@ -188,11 +188,13 @@ const onDataZoom = (params) => {
 
 // 获取当前K线窗口的时间范围并请求新闻
 function fetchNewsByChartWindow() {
-  const chartInstance = vchartRef.value.chart
-  if (!option.value.xAxis.data.length) return
-  const dataZoom = chartInstance.getOption().dataZoom?.[0]
-  let startIdx = Math.round(dataZoom?.start / 100 * (option.value.xAxis.data.length - 1)) || 0
-  let endIdx = Math.round(dataZoom?.end / 100 * (option.value.xAxis.data.length - 1)) || (option.value.xAxis.data.length - 1)
+  const chartInstance = vchartRef.value?.chart
+  if (!chartInstance || !option.value.xAxis.data.length) return
+  const chartOption = typeof chartInstance.getOption === 'function' ? chartInstance.getOption() : null
+  if (!chartOption || !chartOption.dataZoom || !Array.isArray(chartOption.dataZoom) || chartOption.dataZoom.length === 0) return
+  const dataZoom = chartOption.dataZoom[0]
+  let startIdx = Math.round((dataZoom?.start ?? 0) / 100 * (option.value.xAxis.data.length - 1)) || 0
+  let endIdx = Math.round((dataZoom?.end ?? 100) / 100 * (option.value.xAxis.data.length - 1)) || (option.value.xAxis.data.length - 1)
   if (startIdx > endIdx) [startIdx, endIdx] = [endIdx, startIdx]
   const startTime = option.value.xAxis.data[startIdx]
   const endTime = option.value.xAxis.data[endIdx]
@@ -221,4 +223,17 @@ async function fetchNews(startTime, endTime) {
   }
   isZooming.value = false;
 }
+
+onUnmounted(() => {
+  // 清除定时器
+  if (zoomTimeout.value) {
+    clearTimeout(zoomTimeout.value)
+    zoomTimeout.value = null
+  }
+  // 移除 ECharts 事件监听
+  const chartInstance = vchartRef.value?.chart
+  if (chartInstance && chartInstance.off) {
+    chartInstance.off('dataZoom', onDataZoom)
+  }
+})
 </script>
