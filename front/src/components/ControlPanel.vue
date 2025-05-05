@@ -67,9 +67,16 @@ import {useStore} from 'vuex'
 
 const store = useStore()
 
+// 初始化时间范围
+const initDateRange = () => {
+  const now = new Date()
+  const endDate = now.toISOString().slice(0, 7) // 当前年月 YYYY-MM
+  const startDate = new Date(now.setFullYear(now.getFullYear() - 1)).toISOString().slice(0, 7) // 一年前的年月
+  store.commit('updateDateRange', { start: startDate, end: endDate })
+}
+
 // 股票列表
 const symbols = computed(() => {
-  console.log('Current symbols in store:', store.state.symbols)
   return store.state.symbols
 })
 
@@ -105,7 +112,6 @@ const endDate = computed({
 
 // 事件处理
 const handleSymbolSelect = (symbol) => {
-  console.log('Selected symbol:', symbol)
   selectedSymbol.value = symbol
   store.dispatch('fetchStockData')
 }
@@ -120,19 +126,23 @@ const handleDateRangeChange = () => {
 }
 
 // 组件挂载时获取股票列表
-onMounted(() => {
-  console.log('Component mounted, fetching symbols...')
-  store.dispatch('fetchSymbols')
+onMounted(async () => {
+  initDateRange() // 初始化时间范围
+  await store.dispatch('fetchSymbols')
+  console.log('init....',symbols.value,selectedSymbol.value)
+  if (symbols.value && symbols.value.length > 0) {
+    selectedSymbol.value = symbols.value[0]
+    await store.dispatch('fetchStockData')
+  }
 })
 
 // 监听 symbols 变化
 watch(symbols, (newSymbols) => {
-  console.log('Symbols updated:', newSymbols)
   if (newSymbols && newSymbols.length > 0 && !selectedSymbol.value) {
     selectedSymbol.value = newSymbols[0]
     store.dispatch('fetchStockData')
   }
-}, {immediate: true})
+}, { immediate: true })
 </script>
 
 <style scoped>

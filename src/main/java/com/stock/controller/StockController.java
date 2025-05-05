@@ -34,13 +34,13 @@ public class StockController {
         return "index";
     }
 
-    @PostMapping("/initialize")
+    @PostMapping("/admin/initialize")
     public String initializeData() {
         stockService.initializeHistoricalData();
         return "Historical data initialization started";
     }
 
-    @PostMapping("/incremental-update")
+    @PostMapping("/admin/incremental-update")
     public String incrementalUpdate() {
         stockService.incrementalUpdate();
         return "Incremental update started";
