@@ -1,1 +1,1 @@
-使用springboot开发一个股票分析系统，跟踪股票代码SPY和QQQ，可以配置中添加代码，将每日股价保存在mysql中，每日定时运行，使用mybatis，使用bootstrap前端框架，首页好看些，需要展示6个月的股票曲线，绘制图表，可以选择指数显示，程序需要可以多次初始化3年数据，并允许重复允许，支持增量更新
+//https://eodhd.com/api/news?s=AAPL.US&offset=0&limit=10&api_token=6817681fa9d630.78396422&fmt=json

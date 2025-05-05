@@ -1,6 +1,7 @@
 package com.stock.model;
 
 import lombok.Data;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -12,4 +13,6 @@ public class News {
     private String content;
     private String source;
     private LocalDate date;
+    private String link;
+    private String md5;
 } 

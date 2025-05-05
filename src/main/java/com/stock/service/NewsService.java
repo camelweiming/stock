@@ -1,6 +1,7 @@
 package com.stock.service;
 
 import com.stock.model.News;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,4 +11,6 @@ import java.util.List;
  */
 public interface NewsService {
     List<News> findNewsByTimeRange(LocalDateTime startTime, LocalDateTime endTime, int count);
+
+    void save(News news);
 }
