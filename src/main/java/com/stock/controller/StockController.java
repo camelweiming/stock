@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -29,23 +28,6 @@ public class StockController {
     private final NewsMapper newsMapper;
     private static final Logger log = LoggerFactory.getLogger(StockController.class);
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @PostMapping("/admin/initialize")
-    public String initializeData() {
-        stockService.initializeHistoricalData();
-        return "Historical data initialization started";
-    }
-
-    @PostMapping("/admin/incremental-update")
-    public String incrementalUpdate() {
-        stockService.incrementalUpdate();
-        return "Incremental update started";
-    }
-
     @GetMapping("/api/stock/data")
     public Map<String, Object> getStockData(@RequestParam String symbol, @RequestParam(required = false) String view, @RequestParam String startDate, @RequestParam String endDate) {
         LocalDate start = YearMonth.parse(startDate).atDay(1);
@@ -63,13 +45,13 @@ public class StockController {
         List<StockPrice> filteredData = stockData.stream().filter(price -> !price.getTradeDate().isAfter(end)).collect(Collectors.toList());
 
         // 获取新闻数据
-        LocalDateTime startTime = start.atStartOfDay();
-        LocalDateTime endTime = end.atTime(23, 59, 59);
-        List<News> newsList = newsMapper.findNewsByTimeRange(startTime, endTime, 5);
+//        LocalDateTime startTime = start.atStartOfDay();
+//        LocalDateTime endTime = end.atTime(23, 59, 59);
+//        List<News> newsList = newsMapper.findNewsByTimeRange(startTime, endTime, 5);
 
         Map<String, Object> response = new HashMap<>();
         response.put("stockData", filteredData);
-        response.put("newsList", newsList);
+//        response.put("newsList", newsList);
         return response;
     }
 
@@ -79,34 +61,6 @@ public class StockController {
         Map<String, Object> response = new HashMap<>();
         response.put("symbols", symbols);
         response.put("defaultSymbol", symbols.isEmpty() ? "" : symbols.get(0));
-        return response;
-    }
-
-    @GetMapping("/api/get_news")
-    public Map<String, Object> getNews(@RequestParam String startTime, @RequestParam String endTime, @RequestParam(defaultValue = "5") int count, @RequestParam(defaultValue = "day") String mode) {
-        java.time.LocalDateTime start = java.time.LocalDateTime.parse(startTime.replace(" ", "T"));
-        java.time.LocalDateTime end = java.time.LocalDateTime.parse(endTime.replace(" ", "T"));
-        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        log.info("getNews参数：startTime={}, endTime={}, count={}, mode={}", start.format(formatter), end.format(formatter), count, mode);
-        List<News> newsList = newsMapper.findNewsByTimeRange(start, end, count);
-        for (int i = 0; i < count; i++) {
-            News n = new News();
-            n.setTitle("股票市场重要新闻 " + (i + 1));
-            n.setTime(LocalDateTime.now());
-            n.setContent("这是第" + (i + 1) + "条新闻的详细内容，包含市场分析和预测。Get sentiment scores for one or more financial instruments (stocks, ETFs, crypto). Sentiment scores are calculated from both news and social media, normalized on a scale from -1 (very negative) to 1 (very positive).\n" +
-                    "\nGet sentiment scores for one or more financial instruments (stocks, ETFs, crypto). Sentiment scores are calculated from both news and social media, normalized on a scale from -1 (very negative) to 1 (very positive).\n" +
-                    "\nGet sentiment scores for one or more financial instruments (stocks, ETFs, crypto). Sentiment scores are calculated from both news and social media, normalized on a scale from -1 (very negative) to 1 (very positive).\n" +
-                    "\n");
-            n.setSource("财经新闻");
-            newsList.add(n);
-        }
-        Map<String, Object> response = new HashMap<>();
-        response.put("code", 0);
-        response.put("message", "success");
-        response.put("data", newsList);
-        response.put("mode", mode);
-        response.put("startTime", startTime);
-        response.put("endTime", endTime);
         return response;
     }
 

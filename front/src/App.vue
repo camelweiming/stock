@@ -21,7 +21,7 @@ import ChartContainer from './components/ChartContainer.vue'
 }
 
 .app-main {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
 }

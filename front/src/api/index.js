@@ -7,10 +7,10 @@ const api = axios.create({
 
 export default {
   initialize() {
-    return api.get('/initialize')
+    return api.get('/admin/initialize')
   },
   update() {
-    return api.get('/update')
+    return api.get('/admin/update')
   },
   getStockData(params) {
     return api.get('/stock', { params })

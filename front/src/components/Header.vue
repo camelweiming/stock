@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center" style="margin: 0 22px;">
         <div>
           <h1>股票分析系统</h1>
           <p>专业的股票数据分析和可视化工具</p>

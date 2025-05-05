@@ -84,7 +84,7 @@ const handleIncrementalUpdate = async () => {
 }
 
 .card {
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
