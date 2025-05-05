@@ -93,7 +93,10 @@ public class StockController {
             News n = new News();
             n.setTitle("股票市场重要新闻 " + (i + 1));
             n.setTime(LocalDateTime.now());
-            n.setContent("这是第" + (i + 1) + "条新闻的详细内容，包含市场分析和预测。");
+            n.setContent("这是第" + (i + 1) + "条新闻的详细内容，包含市场分析和预测。Get sentiment scores for one or more financial instruments (stocks, ETFs, crypto). Sentiment scores are calculated from both news and social media, normalized on a scale from -1 (very negative) to 1 (very positive).\n" +
+                    "\nGet sentiment scores for one or more financial instruments (stocks, ETFs, crypto). Sentiment scores are calculated from both news and social media, normalized on a scale from -1 (very negative) to 1 (very positive).\n" +
+                    "\nGet sentiment scores for one or more financial instruments (stocks, ETFs, crypto). Sentiment scores are calculated from both news and social media, normalized on a scale from -1 (very negative) to 1 (very positive).\n" +
+                    "\n");
             n.setSource("财经新闻");
             newsList.add(n);
         }

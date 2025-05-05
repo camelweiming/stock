@@ -1,61 +1,57 @@
 <template>
   <div class="control-panel">
-    <div class="control-left">
-      <div class="control-section">
-        <div class="control-section-title">
-          <span>选择股票</span>
-        </div>
-        <div v-if="isLoading" class="loading">加载中...</div>
-        <div v-else-if="error" class="error">{{ error }}</div>
-        <div v-else class="symbols-container">
-          <div 
-            v-for="symbol in symbols" 
-            :key="symbol"
-            class="symbol-item"
-            :class="{ active: selectedSymbol === symbol }"
-            @click="handleSymbolSelect(symbol)"
-          >
-            <span>{{ symbol }}</span>
-          </div>
+    <div class="control-section symbol-section">
+      <div class="control-section-title">
+        <span>选择股票</span>
+      </div>
+      <div v-if="isLoading" class="loading">加载中...</div>
+      <div v-else-if="error" class="error">{{ error }}</div>
+      <div v-else class="symbols-container">
+        <div 
+          v-for="symbol in symbols" 
+          :key="symbol"
+          class="symbol-item"
+          :class="{ active: selectedSymbol === symbol }"
+          @click="handleSymbolSelect(symbol)"
+        >
+          <span>{{ symbol }}</span>
         </div>
       </div>
     </div>
-    <div class="control-right">
-      <div class="control-section">
-        <div class="control-section-title">
-          <span>视图设置</span>
-        </div>
-        <div class="view-toggle">
-          <button 
-            v-for="view in viewOptions" 
-            :key="view.value"
-            :class="{ active: selectedView === view.value }"
-            @click="handleViewSelect(view.value)"
-          >
-            {{ view.label }}
-          </button>
-        </div>
+    <div class="control-section view-section">
+      <div class="control-section-title">
+        <span>视图设置</span>
       </div>
-      <div class="control-section">
-        <div class="control-section-title">
-          <span>时间范围</span>
-        </div>
-        <div class="time-range">
-          <div class="date-range">
-            <input 
-              type="month" 
-              class="date-input" 
-              v-model="startDate"
-              @change="handleDateRangeChange"
-            >
-            <span class="date-separator">至</span>
-            <input 
-              type="month" 
-              class="date-input" 
-              v-model="endDate"
-              @change="handleDateRangeChange"
-            >
-          </div>
+      <div class="view-toggle">
+        <button 
+          v-for="view in viewOptions" 
+          :key="view.value"
+          :class="{ active: selectedView === view.value }"
+          @click="handleViewSelect(view.value)"
+        >
+          {{ view.label }}
+        </button>
+      </div>
+    </div>
+    <div class="control-section time-section">
+      <div class="control-section-title">
+        <span>时间范围</span>
+      </div>
+      <div class="time-range">
+        <div class="date-range">
+          <input 
+            type="month" 
+            class="date-input" 
+            v-model="startDate"
+            @change="handleDateRangeChange"
+          >
+          <span class="date-separator">至</span>
+          <input 
+            type="month" 
+            class="date-input" 
+            v-model="endDate"
+            @change="handleDateRangeChange"
+          >
         </div>
       </div>
     </div>
@@ -139,116 +135,118 @@ watch(symbols, (newSymbols) => {
 <style scoped>
 .control-panel {
   display: flex;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.control-left {
-  flex: 1;
-}
-
-.control-right {
-  flex: 2;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #232e47;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  color: #fff;
 }
 
 .control-section {
-  margin-bottom: 1.5rem;
+  background: #273352;
+  border-radius: 8px;
+  padding: 1.2rem 1rem 1rem 1rem;
+  margin-bottom: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
-
-.control-section:last-child {
+.symbol-section {
+  margin-bottom: 0.5rem;
+}
+.view-section {
+  margin-bottom: 0.5rem;
+}
+.time-section {
   margin-bottom: 0;
 }
-
 .control-section-title {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  color: #333;
-  font-weight: 500;
+  color: #e6b422;
+  font-weight: 600;
+  font-size: 1.08rem;
 }
-
 .symbols-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
-
 .symbol-item {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  background-color: #f8f9fa;
-  border-radius: 0.25rem;
+  padding: 0.5rem 1.2rem;
+  background-color: #1a233a;
+  border-radius: 0.3rem;
   cursor: pointer;
   transition: all 0.2s;
-  border: 1px solid #dee2e6;
+  border: 2px solid transparent;
+  color: #fff;
+  font-weight: 500;
 }
-
 .symbol-item:hover {
-  background-color: #e9ecef;
+  background-color: #2d3a5a;
 }
-
 .symbol-item.active {
-  background-color: #e7f5ff;
-  color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #fff;
+  color: #232e47;
+  border: 2px solid #e6b422;
+  font-weight: 700;
+  box-shadow: 0 0 0 2px #e6b42233;
 }
-
 .view-toggle {
   display: flex;
   gap: 0.5rem;
 }
-
 .view-toggle button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #dee2e6;
-  background-color: #fff;
-  border-radius: 0.25rem;
+  padding: 0.5rem 1.2rem;
+  border: 1.5px solid #e6b422;
+  background-color: #232e47;
+  color: #e6b422;
+  border-radius: 0.3rem;
   cursor: pointer;
   transition: all 0.2s;
+  font-weight: 500;
 }
-
-.view-toggle button:hover {
-  background-color: #f8f9fa;
-}
-
 .view-toggle button.active {
-  background-color: #0d6efd;
-  color: #fff;
-  border-color: #0d6efd;
+  background-color: #e6b422;
+  color: #232e47;
 }
-
+.view-toggle button:hover {
+  background-color: #fffbe6;
+  color: #232e47;
+}
 .time-range {
   display: flex;
   align-items: center;
 }
-
 .date-range {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-
 .date-input {
   padding: 0.5rem;
-  border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
+  border: 1.5px solid #e6b422;
+  border-radius: 0.3rem;
+  background: #232e47;
+  color: #e6b422;
+  font-weight: 500;
 }
-
+.date-input:focus {
+  outline: none;
+  border-color: #fff;
+}
 .date-separator {
-  color: #666;
+  color: #e6b422;
+  font-weight: 600;
 }
-
 .loading {
-  color: #666;
+  color: #e6b422;
   padding: 1rem;
   text-align: center;
 }
-
 .error {
   color: #dc3545;
   padding: 1rem;

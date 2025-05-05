@@ -12,7 +12,6 @@
       </div>
     </header>
     <main class="app-main">
-      <ControlPanel />
       <ChartContainer />
     </main>
   </div>
@@ -20,7 +19,6 @@
 
 <script setup>
 import { useStore } from 'vuex'
-import ControlPanel from './components/ControlPanel.vue'
 import ChartContainer from './components/ChartContainer.vue'
 
 const store = useStore()

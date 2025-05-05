@@ -1,34 +1,60 @@
 <template>
-  <div class="chart-container">
-    <v-chart
-        ref="vchartRef"
-        :option="option"
-        autoresize
-        class="chart"
-        @vue:mounted="onMountedChart"
-    />
-    <div class="news-list">
-      <div class="news-title">相关新闻</div>
-      <div v-if="loadingNews" class="loading">加载新闻中...</div>
-      <div v-else-if="newsList.length === 0" class="news-item">暂无相关新闻</div>
-      <div
-          v-for="(news, index) in newsList"
-          :key="index"
-          class="news-item"
-      >
-        <div class="news-header">
-          <span class="news-title">{{ news.title }}</span>
-          <span class="news-meta">{{ formatTime(news.time) }} | {{ news.source }}</span>
+  <div class="row">
+    <!-- 左侧侧边栏 -->
+    <div class="col-md-3">
+      <div class="card card-sidebar">
+        <!-- 这里可以放置你的菜单、股票选择等内容 -->
+        <ControlPanel />
+      </div>
+    </div>
+    <!-- 右侧主内容区 -->
+    <div class="col-md-9">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-title">股票K线图</h5>
         </div>
-        <div class="news-content">
-          <span v-if="!expanded[index]">
-            {{ news.content.slice(0, 10) }}
-            <span v-if="news.content.length > 10" class="expand-btn" @click="expand(index)">...展开</span>
-          </span>
-          <span v-else>
-            {{ news.content }}
-            <span class="expand-btn" @click="collapse(index)">收起</span>
-          </span>
+        <div class="card-body">
+          <v-chart
+            ref="vchartRef"
+            :option="option"
+            autoresize
+            style="width:100%;height:500px;min-height:400px;"
+            @vue:mounted="onMountedChart"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 新闻区可放在下方 -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">相关新闻</h5>
+        </div>
+        <div class="card-body news-list">
+          <div v-if="loadingNews" class="loading">加载新闻中...</div>
+          <div v-else-if="newsList.length === 0" class="news-item">暂无相关新闻</div>
+          <div
+            v-for="(news, index) in newsList"
+            :key="index"
+            class="news-item"
+          >
+            <div class="news-header">
+              <span class="news-title">{{ news.title }}</span>
+              <span class="news-meta">{{ formatTime(news.time) }} | {{ news.source }}</span>
+            </div>
+            <div class="news-content">
+              <span v-if="!expanded[index]">
+                {{ news.content.slice(0, 10) }}
+                <span v-if="news.content.length > 10" class="expand-btn" @click="expand(index)">...展开</span>
+              </span>
+              <span v-else>
+                {{ news.content }}
+                <span class="expand-btn" @click="collapse(index)">收起</span>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -36,7 +62,7 @@
 </template>
 
 <script setup>
-import {ref, computed, watch, nextTick} from 'vue'
+import {ref, computed, watch, nextTick, onMounted} from 'vue'
 import {useStore} from 'vuex'
 import axios from 'axios'
 import VChart from 'vue-echarts'
@@ -44,6 +70,7 @@ import {use} from 'echarts/core'
 import {CandlestickChart} from 'echarts/charts'
 import {GridComponent, TooltipComponent, TitleComponent, DataZoomComponent} from 'echarts/components'
 import {CanvasRenderer} from 'echarts/renderers'
+import ControlPanel from './ControlPanel.vue'
 
 use([CandlestickChart, GridComponent, TooltipComponent, TitleComponent, DataZoomComponent, CanvasRenderer])
 
@@ -143,12 +170,11 @@ const collapse = (idx) => {
 // 监听图表缩放/拖动
 const onMountedChart = () => {
   nextTick(() => {
-    console.log('--- dataZoom executed ---');
+    if (vchartRef.value && vchartRef.value.chart) {
+      vchartRef.value.chart.resize();
+    }
     const chartInstance = vchartRef.value.chart
-    // if (vchartRef.value && typeof vchartRef.value.getEchartsInstance === 'function') {
-    //   const chartInstance = vchartRef.value.getEchartsInstance()
-      chartInstance.on('dataZoom', onDataZoom)
-    // }
+    chartInstance.on('dataZoom', onDataZoom)
   })
 }
 
@@ -162,12 +188,8 @@ const onDataZoom = (params) => {
 
 // 获取当前K线窗口的时间范围并请求新闻
 function fetchNewsByChartWindow() {
-  console.log('--- onMountedChart executed ---');
-  console.log('vchartRef.value:', vchartRef.value);
   const chartInstance = vchartRef.value.chart
   if (!option.value.xAxis.data.length) return
-  // 获取当前 dataZoom 范围
-  // const chartInstance = vchartRef.value.getEchartsInstance()
   const dataZoom = chartInstance.getOption().dataZoom?.[0]
   let startIdx = Math.round(dataZoom?.start / 100 * (option.value.xAxis.data.length - 1)) || 0
   let endIdx = Math.round(dataZoom?.end / 100 * (option.value.xAxis.data.length - 1)) || (option.value.xAxis.data.length - 1)
@@ -200,77 +222,3 @@ async function fetchNews(startTime, endTime) {
   isZooming.value = false;
 }
 </script>
-
-<style scoped>
-.chart-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.chart {
-  width: 100%;
-  height: 500px;
-  margin-bottom: 2rem;
-}
-
-.news-list {
-  width: 100%;
-  margin-top: 1rem;
-  background: #f8f9fa;
-  border-radius: 0.25rem;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.news-title {
-  font-weight: bold;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-}
-
-.news-item {
-  border-bottom: 1px solid #e0e0e0;
-  padding: 0.5rem 0;
-}
-
-.news-item:last-child {
-  border-bottom: none;
-}
-
-.news-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1rem;
-  margin-bottom: 0.3rem;
-}
-
-.news-meta {
-  color: #888;
-  font-size: 0.9rem;
-}
-
-.news-content {
-  color: #333;
-  font-size: 0.98rem;
-  line-height: 1.5;
-}
-
-.expand-btn {
-  color: #0d6efd;
-  cursor: pointer;
-  margin-left: 0.5em;
-  font-size: 0.95em;
-}
-
-.loading {
-  color: #666;
-  text-align: center;
-  padding: 1rem;
-}
-</style>
