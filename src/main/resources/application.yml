@@ -8,7 +8,7 @@ spring:
 #    password: weiming711
     url: jdbc:mysql://online.ctaeaw8a05ny.ap-southeast-2.rds.amazonaws.com:3306/stock_analysis?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: admin
-    password: weiming711
+    password: Weiming711
     driver-class-name: com.mysql.cj.jdbc.Driver
   
   thymeleaf:
