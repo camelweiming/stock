@@ -7,7 +7,7 @@ SPRINGBOOT_LOG_PATH="springboot.log"
 # 定义 Vue 项目的目录路径
 VUE_PROJECT_PATH="front"
 # 定义 Vue 应用的端口号
-VUE_PORT=8080
+VUE_PORT=80
 
 function start_apps() {
     # 启动 Spring Boot 应用
