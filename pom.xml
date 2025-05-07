@@ -127,9 +127,6 @@
                     <target>22</target>
                     <!-- 以下是可选配置，确保使用正确的 Java 版本 -->
                     <release>22</release>
-                    <compilerArgs>
-                        <arg>--enable-preview</arg> <!-- 如果使用了预览功能 -->
-                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>
