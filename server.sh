@@ -24,7 +24,7 @@ function start_apps() {
         return 1
     fi
     cd $VUE_PROJECT_PATH
-    nohup npm run serve -- --port $VUE_PORT > vue.log 2>&1 &
+    nohup npm run serve -- --port $VUE_PORT > ../vue.log 2>&1 &
     echo "Vue 应用已启动，端口号: $VUE_PORT，日志文件路径: vue.log"
 }
 
