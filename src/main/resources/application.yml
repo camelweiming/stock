@@ -3,7 +3,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/stock_analysis?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://localhost:3306/stock_analysis?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#    username: root
+#    password: weiming711
+    url: jdbc:mysql://online.ctaeaw8a05ny.ap-southeast-2.rds.amazonaws.com:3306/stock_analysis?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: weiming711
     driver-class-name: com.mysql.cj.jdbc.Driver
