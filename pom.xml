@@ -118,17 +118,17 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
-                <configuration>
-                    <source>22</source>
-                    <target>22</target>
-                    <!-- 以下是可选配置，确保使用正确的 Java 版本 -->
-                    <release>22</release>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>3.11.0</version>-->
+<!--                <configuration>-->
+<!--                    <source>22</source>-->
+<!--                    <target>22</target>-->
+<!--                    &lt;!&ndash; 以下是可选配置，确保使用正确的 Java 版本 &ndash;&gt;-->
+<!--                    <release>22</release>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project> 
