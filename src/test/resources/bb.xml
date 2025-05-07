@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--https://feeds.bloomberg.com/economics/news.rss-->
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+    <channel>
+        <title><![CDATA[Bloomberg Economics]]></title>
+        <description><![CDATA[Bloomberg Economics]]></description>
+        <link>https://bloomberg.com/economicsRouter/</link>
+        <image>
+            <url>https://www.bloomberg.com/feeds/static/images/bloomberg_logo_blue.png</url>
+            <title>Bloomberg Economics</title>
+            <link>https://bloomberg.com/economicsRouter/</link>
+        </image>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Tue, 06 May 2025 02:58:44 GMT</lastBuildDate>
+        <copyright><![CDATA[Copyright 2025 BLOOMBERG L.P. ALL RIGHTS RESERVED]]></copyright>
+        <language><![CDATA[en]]></language>
+        <item>
+            <title><![CDATA[China Services Activity Slips, Adding Risk of Rapid Slowdown]]></title>
+            <description>
+                <![CDATA[China’s services activity deteriorated more than expected in April, a private survey showed, the latest setback for an economy already under pressure from US tariffs.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-06/china-s-services-activity-disappoints-in-another-blow-to-economy
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-06/china-s-services-activity-disappoints-in-another-blow-to-economy
+            </guid>
+            <dc:creator><![CDATA[John Liu, Yujing Liu]]></dc:creator>
+            <pubDate>Tue, 06 May 2025 01:47:06 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i3a_uCaAGADM/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i3a_uCaAGADM/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Shoppers walk down Nanjing East Road, a busy retail street, in Shanghai, China on Saturday, Jan. 4, 2025. China’s economy has shown signs of recovery after officials rolled out a broad package of stimulus since late September, but the growth outlook remains challenging due to a possible second trade war with the US. Photographer: Qilai Shen/Bloomberg]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Australia’s Household Spending Surprisingly Drops on Cyclone Hit]]></title>
+            <description>
+                <![CDATA[Australia’s household spending unexpectedly declined in March, snapping five months of increases as the impact of a major storm in the nation’s northeast disrupted activity.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-06/australia-s-household-spending-surprisingly-drops-on-cyclone-hit
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-06/australia-s-household-spending-surprisingly-drops-on-cyclone-hit
+            </guid>
+            <dc:creator><![CDATA[Swati Pandey]]></dc:creator>
+            <pubDate>Tue, 06 May 2025 01:42:50 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/if5ussdfkIyI/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/if5ussdfkIyI/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[A man walks through the Central Business District (CBD) area of Brisbane on March 8, 2025, as cyclone Alfred crossed the southeast Queensland coast. Cyclone Alfred weakened into a tropical low on March 8 but still threatened to unleash major floods on swollen rivers as it approached the rain and wind-lashed eastern coast of Australia. (Photo by Patrick HAMILTON / AFP) (Photo by PATRICK HAMILTON/AFP /AFP via Getty Images)]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Philippine Inflation at Lowest Since 2019, Backs More Rate Cuts]]></title>
+            <description>
+                <![CDATA[Philippine inflation slowed to the lowest in more than five years in April, backed by a sustained decline in rice prices and allowing the central bank to stick with its plans for further monetary easing this year.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-06/philippine-inflation-at-lowest-since-2019-backs-more-rate-cuts
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-06/philippine-inflation-at-lowest-since-2019-backs-more-rate-cuts
+            </guid>
+            <dc:creator><![CDATA[Ditas B Lopez, Neil Jerome Morales]]></dc:creator>
+            <pubDate>Tue, 06 May 2025 01:13:03 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i3Zem48NbMF0/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i3Zem48NbMF0/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Moody’s Sees Key Risk to Malaysia Credit Rating From Tariffs]]></title>
+            <description>
+                <![CDATA[Tariff shocks pose a major threat to Malaysia’s sovereign credit rating, given the potential disruption to economic growth and fiscal consolidation, according to Moody’s Investors Service.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/moody-s-sees-key-risk-to-malaysia-credit-rating-from-tariffs
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/moody-s-sees-key-risk-to-malaysia-credit-rating-from-tariffs
+            </guid>
+            <dc:creator><![CDATA[Anisah Shukry]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 23:00:00 GMT</pubDate>
+            <category domain="stock-symbol"><![CDATA[NYS:MCO]]></category>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ilKeN8GGnBA0/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ilKeN8GGnBA0/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Buildings in Kuala Lumpur. Photographer: Samsul Said/Bloomberg]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[CBO Chief Still Sees US Treasury ‘X-Date’ Coming Late Summer]]></title>
+            <description>
+                <![CDATA[The head of the nonpartisan Congressional Budget Office said the US Treasury Department can likely keep paying the government’s bills until late summer before Congress must act to raise or suspend the debt ceiling.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/cbo-chief-still-sees-us-treasury-x-date-coming-late-summer
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/cbo-chief-still-sees-us-treasury-x-date-coming-late-summer
+            </guid>
+            <dc:creator><![CDATA[Jarrell Dillard, Romaine Bostick, Carol A Massar]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 20:28:34 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iIFsx5E8OuJ8/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iIFsx5E8OuJ8/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description><![CDATA[Phillip Swagel]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[California Warns of 9% Drop in Foreign Visits in Trump Backlash]]></title>
+            <description>
+                <![CDATA[California warned that a plunge in international travel is set to hit tourism revenue after record spending from visitors last year.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/california-warns-of-9-drop-in-foreign-visits-in-trump-backlash
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/california-warns-of-9-drop-in-foreign-visits-in-trump-backlash
+            </guid>
+            <dc:creator><![CDATA[Alicia Clanton]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 18:08:44 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iJiHphrlcIgk/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iJiHphrlcIgk/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Dolores Park in the Mission neighborhood of San Francisco.]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Nigeria’s Tinubu Set to Sign Order Prioritizing Local Industries]]></title>
+            <description>
+                <![CDATA[Nigeria’s President Bola Tinubu plans to sign an executive order that will prioritize the procurement of goods and services from local firms, a move that bears some semblance to President Donald Trump’s “America First” agenda that champions US interests.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/tinubu-set-to-sign-order-prioritizing-nigerian-industry
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/tinubu-set-to-sign-order-prioritizing-nigerian-industry
+            </guid>
+            <dc:creator><![CDATA[Ruth Olurounbi]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 17:55:39 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDspLVVR3cJ4/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDspLVVR3cJ4/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description><![CDATA[Bola Tinubu]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Bessent Touts US as ‘Premier Destination’ for World Capital]]></title>
+            <description>
+                <![CDATA[Treasury Secretary Scott Bessent touted the US as the “premier destination” for global capital and argued that the Trump administration’s policies will solidify that position &mdash; countering the so-called sell America theme that materialized last month.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/bessent-touts-us-as-premier-destination-for-global-capital
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/bessent-touts-us-as-premier-destination-for-global-capital
+            </guid>
+            <dc:creator><![CDATA[Daniel Flatley]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 15:02:38 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBKsGjNJ_2O0/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBKsGjNJ_2O0/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Treasury Secretary Scott Bessent speaks at the Milken Institute Global Conference in Beverly Hills, California, on May 5. Photographer: PATRICK T. FALLON/AFP]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[ECB’s Stournaras Says Interest-Rate Cuts Are Likely to Continue]]></title>
+            <description>
+                <![CDATA[The European Central Bank is set to carry on cutting interest rates, according to Governing Council member Yannis Stournaras.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/ecb-stournaras-says-interest-rate-cuts-are-likely-to-continue
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/ecb-stournaras-says-interest-rate-cuts-are-likely-to-continue
+            </guid>
+            <dc:creator><![CDATA[Sotiris Nikas]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 15:53:33 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iJ7qD8jGW6Ns/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iJ7qD8jGW6Ns/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Yannis Stournaras, governor of Bank of Greece, during a Bloomberg Television interview in London, UK, on Thursday, Nov. 21, 2024. "As inflation develops now and as the real economy develops now, I think yes we should have a cut in every meeting from now on until we get to what we call the neutral rate," Stournaras said.]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Growth at US Service Providers Picks Up After Slumping in March]]></title>
+            <description>
+                <![CDATA[Activity at US service providers accelerated in April after a slumping in the prior month, while materials prices increased in response to escalating tariffs.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/growth-at-us-service-providers-picks-up-after-slumping-in-march
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/growth-at-us-service-providers-picks-up-after-slumping-in-march
+            </guid>
+            <dc:creator><![CDATA[Mark Niquette]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 14:00:00 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iXegrmpFTYDM/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iXegrmpFTYDM/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[An employee uses a forklift to move window frames at a manufacturing facility in Pella, Iowa.]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Trade Chaos Is Part of the Plan for Trump, Nightmare for Powell]]></title>
+            <description>
+                <![CDATA[Jim Tuchler, a Chicago-area retailer, and Federal Reserve Chair Jerome Powell have a lot in common these days.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-04/trade-chaos-is-part-of-the-plan-for-trump-nightmare-for-powell
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-04/trade-chaos-is-part-of-the-plan-for-trump-nightmare-for-powell
+            </guid>
+            <dc:creator><![CDATA[Craig Torres, Michael Sasso]]></dc:creator>
+            <pubDate>Sun, 04 May 2025 17:00:00 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iuDpS5xYmXhw/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iuDpS5xYmXhw/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Powell at an Economic Club of Chicago event on April 16]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Saudi Arabia’s Budget Deficit Soared Even Before Oil’s Slump]]></title>
+            <description>
+                <![CDATA[Saudi Arabia’s budget deficit ballooned in the first quarter, even before oil’s latest drop put additional pressure on the kingdom’s finances.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/saudi-arabia-s-budget-deficit-soared-even-before-oil-s-slump
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/saudi-arabia-s-budget-deficit-soared-even-before-oil-s-slump
+            </guid>
+            <dc:creator><![CDATA[Matthew Martin]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 14:30:41 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ikSdZ2IDKuxc/v3/1200x-1.png"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ikSdZ2IDKuxc/v3/1200x-1.png"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Tariff Concerns Dominate First Day of Milken Conference]]></title>
+            <link>https://www.bloomberg.com/news/live-blog/2025-05-05/milken-institute-global-conference-day-1</link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/live-blog/2025-05-05/milken-institute-global-conference-day-1
+            </guid>
+            <pubDate>Mon, 05 May 2025 12:48:19 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iUGUkXoTjWkE/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iUGUkXoTjWkE/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Brazil Economists Cut Interest-Rate Forecast on Eve of Policy Meeting]]></title>
+            <description>
+                <![CDATA[Brazil economists cut their 2025 year-end benchmark interest rate forecast just hours before central bankers gather to start debating the size of their next &mdash; and perhaps last &mdash; borrowing cost hike of their cycle.]]></description>
+            <link>https://www.bloomberg.com/news/articles/2025-05-05/brazil-economists-cut-2025-interest-rate-forecast
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/brazil-economists-cut-2025-interest-rate-forecast
+            </guid>
+            <dc:creator><![CDATA[Andrew Rosati]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 12:14:43 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iYq4w9gXc4v4/v3/1200x-1.png"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iYq4w9gXc4v4/v3/1200x-1.png"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[US Border Towns Are Being Ravaged by Canada’s Furious Boycott]]></title>
+            <description>
+                <![CDATA[<p>Economically dependent on their northern neighbor, business owners in Washington state are laying off employees and shutting their doors.</p>]]></description>
+            <link>
+                https://www.bloomberg.com/news/features/2025-05-05/canada-s-us-boycott-is-ravaging-american-border-towns
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/features/2025-05-05/canada-s-us-boycott-is-ravaging-american-border-towns
+            </guid>
+            <dc:creator><![CDATA[Thomas Seal]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 12:00:25 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i7s9d1405K6w/v4/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i7s9d1405K6w/v4/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Since President Donald Trump said he wanted to make Canada a US state with “economic force,” Canadians have boycotted the US.]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Pakistan Cuts Rate to Shield Economy From Tariff Disruptions]]></title>
+            <description>
+                <![CDATA[Pakistan cut its benchmark interest rate to shield the South Asian nation’s economy from global tariff-related disruption.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/pakistan-cuts-rate-to-boost-economy-ahead-of-imf-loan
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/pakistan-cuts-rate-to-boost-economy-ahead-of-imf-loan
+            </guid>
+            <dc:creator><![CDATA[Faseeh Mangi]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 11:05:43 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iORb6xUJufQ8/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iORb6xUJufQ8/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[A street market in Islamabad. Photographer: Betsy Joles/Bloomberg]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[The Buffett View of Trade Deals]]></title>
+            <description>
+                <![CDATA[The most pertinent thing Warren Buffett said at the weekend beyond announcing his retirement at age 94 wasn’t his thoughts on the tariffs roiling the global economy (he’s not a fan) but his defense of Berkshire Hathaway’s $350 billion cash pile. It was, he said, a consequence of abiding by his principle to invest only in deals that offered meaningful returns and his view there had not been many lately.]]></description>
+            <link>
+                https://www.bloomberg.com/news/newsletters/2025-05-05/supply-chain-latest-the-buffett-view-of-trade-deals
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/newsletters/2025-05-05/supply-chain-latest-the-buffett-view-of-trade-deals
+            </guid>
+            <dc:creator><![CDATA[Shawn Donnan]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 11:00:33 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i1MWrYj9Z4SU/v3/1200x-1.png"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i1MWrYj9Z4SU/v3/1200x-1.png"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[‘Strategic Uncertainty’ in US Trade Strategy Toughens Fed’s Job]]></title>
+            <description>
+                <![CDATA[I’m Chris Anstey, an economics editor in Boston, and today we’re looking at reporting by Craig Torres and Michael Sasso on uncertainty and the Fed. Send us feedback and tips to ecodaily@bloomberg.net. And if you aren’t yet signed up to receive this newsletter, you can do so here.]]></description>
+            <link>
+                https://www.bloomberg.com/news/newsletters/2025-05-05/-strategic-uncertainty-in-us-trade-strategy-toughens-fed-s-job
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/newsletters/2025-05-05/-strategic-uncertainty-in-us-trade-strategy-toughens-fed-s-job
+            </guid>
+            <dc:creator><![CDATA[Chris Anstey]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 11:00:30 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ixl4_.RGrcqY/v3/1200x-1.png"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ixl4_.RGrcqY/v3/1200x-1.png"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[South Africa’s Eskom Sees Low Power-Cut Risk as Demand Rises]]></title>
+            <description>
+                <![CDATA[South Africa’s state power utility said the increased reliability of its electricity network will reduce the risk of outages this winter, when demand is expected to increase.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/south-africa-s-eskom-sees-lower-power-cut-risk-as-demand-rises
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/south-africa-s-eskom-sees-lower-power-cut-risk-as-demand-rises
+            </guid>
+            <dc:creator><![CDATA[Paul Burkhardt]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 07:09:51 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iq2urPPYfztg/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iq2urPPYfztg/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[An electrical transmission tower and power lines in the Ekurhuleni municipality of Johannesburg. Photographer: Leon Sadiki/Bloomberg]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Malaysia Seeks to Bring US-Imposed Tariffs Down to Zero in Talks]]></title>
+            <description>
+                <![CDATA[Malaysia is negotiating with the US to bring its tariffs on the Southeast Asian nation down to zero, from the 24% that President Donald Trump pledged to impose, according to Investment, Trade and Industry Minister Zafrul Aziz.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/malaysia-seeks-to-bring-us-imposed-tariffs-down-to-zero-in-talks
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/malaysia-seeks-to-bring-us-imposed-tariffs-down-to-zero-in-talks
+            </guid>
+            <dc:creator><![CDATA[Kok Leong Chan, Anisah Shukry]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 10:17:26 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBI6hizb4YvY/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBI6hizb4YvY/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Port Klang in Selangor, Malaysia. Photo: Richard Humphries/Bloomberg]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Spain to Move Ahead with Plan to Cut Work Week to 37.5 Hours]]></title>
+            <description>
+                <![CDATA[The Spanish government is moving ahead with a plan to reduce the work week.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/spain-to-move-ahead-with-plan-to-cut-work-week-to-37-5-hours
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/spain-to-move-ahead-with-plan-to-cut-work-week-to-37-5-hours
+            </guid>
+            <dc:creator><![CDATA[Daniel Basteiro]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 09:45:59 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iPH36kidoKHo/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iPH36kidoKHo/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Office workers in the financial district of Madrid. Photographer: Emilio Parra Doiztua/Bloomberg]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Swiss Inflation Drops to Zero as SNB Mulls More Rate Cuts]]></title>
+            <description>
+                <![CDATA[Swiss inflation slowed to the weakest in more than four years as the strong franc drives down the costs of imported goods.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/swiss-inflation-drops-to-zero-as-snb-mulls-more-rate-cuts
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/swiss-inflation-drops-to-zero-as-snb-mulls-more-rate-cuts
+            </guid>
+            <dc:creator><![CDATA[Bastian Benrath-Wright]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 06:30:00 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBiDIOD5SdKU/v3/1200x-1.png"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBiDIOD5SdKU/v3/1200x-1.png"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[ECB’s Panetta Says Protectionism Threatens to Weaken Prosperity]]></title>
+            <description>
+                <![CDATA[European Central Bank Governing Council member Fabio Panetta said a new wave of protectionism could damage economies around the world.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/ecb-s-panetta-says-protectionism-threatens-to-weaken-prosperity
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/ecb-s-panetta-says-protectionism-threatens-to-weaken-prosperity
+            </guid>
+            <dc:creator><![CDATA[Alessandra Migliaccio]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 09:10:38 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ikGxlaaRn3Kg/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ikGxlaaRn3Kg/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description><![CDATA[Fabio Panetta Photographer: Alex Kraus/Bloomberg]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Turkey’s Inflation Slowdown Loses Momentum After Market Turmoil]]></title>
+            <description>
+                <![CDATA[A slowdown in Turkey’s inflation lost momentum in April, after a sharp selloff in lira assets triggered by the jailing of key opposition figure Ekrem Imamoglu.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/deceleration-in-turkey-s-inflation-slows-after-market-sell-off
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/deceleration-in-turkey-s-inflation-slows-after-market-sell-off
+            </guid>
+            <dc:creator><![CDATA[Baris Balci, Beril Akman]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 07:04:36 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iHgVHmCZrFGk/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iHgVHmCZrFGk/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Shoppers browse garments for sale at the Findikzade market in Istanbul. Photographer: Kerem Uzel/Bloomberg]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Vietnam Keeps Growth Target at 8% Despite Tariff Challenges]]></title>
+            <description>
+                <![CDATA[Vietnam’s prime minister said the nation’s economic growth target remains unchanged this year despite the many challenges it faces, as the threat of US tariffs creates uncertainty for exporters and businesses.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/vietnam-keeps-growth-target-at-8-despite-tariff-challenges
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/vietnam-keeps-growth-target-at-8-despite-tariff-challenges
+            </guid>
+            <dc:creator><![CDATA[Nguyen Dieu Tu Uyen, Nguyen Xuan Quynh]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 03:15:16 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iImzw.EWVDVY/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iImzw.EWVDVY/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Slowest Indonesia Growth Since 2021 Risks Prabowo’s 8% Goal]]></title>
+            <description>
+                <![CDATA[Indonesia’s economy grew at the slowest pace in over three years amid tepid household consumption and a sharp drop in state spending and investment, putting President Prabowo Subianto’s 8% goal even further out of reach.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/indonesia-s-4-87-growth-misses-estimates-on-weak-consumption
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/indonesia-s-4-87-growth-misses-estimates-on-weak-consumption
+            </guid>
+            <dc:creator><![CDATA[Grace Sihombing]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 04:11:01 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iuJcZ9omeHH4/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iuJcZ9omeHH4/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Household consumption, the biggest driver of Indonesia’s growth, failed to pick up even during the Ramadan festivities in March.]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[India Removes Top Envoy to IMF Who Criticized Fund’s Analysis]]></title>
+            <description>
+                <![CDATA[India recalled its top representative to the International Monetary Fund, a former adviser to Prime Minister Narendra Modi who publicly criticized the fund’s analysis.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/india-removes-top-envoy-to-imf-who-criticized-fund-s-analysis
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/india-removes-top-envoy-to-imf-who-criticized-fund-s-analysis
+            </guid>
+            <dc:creator><![CDATA[Ruchi Bhatia, Eric Martin]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 04:05:52 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iEW0LIPSk1Rs/v3/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iEW0LIPSk1Rs/v3/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[KV Subramanian in 2020 while serving as India’s chief economic adviser.]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Asian Finance Chiefs Call for Regional Unity Amid Tariff Talks]]></title>
+            <description>
+                <![CDATA[Asian finance ministers and central bankers called for unity and reaffirmed their commitment to fair and free trade amid rising protectionism that they said weighs on the global economy.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-05/asian-finance-chiefs-call-for-regional-unity-amid-tariff-talks
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-05/asian-finance-chiefs-call-for-regional-unity-amid-tariff-talks
+            </guid>
+            <dc:creator><![CDATA[Yoshiaki Nohara]]></dc:creator>
+            <pubDate>Mon, 05 May 2025 03:43:58 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKktzcxEEF0E/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKktzcxEEF0E/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Albanese’s Win Offers Rare Chance to Fix Australia’s Economy]]></title>
+            <description>
+                <![CDATA[Prime Minister Anthony Albanese shocked Australia by securing an historic win in Saturday’s election. Now the question is whether he’ll use that mandate to push through tough measures to overhaul the nation’s economy.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-04/albanese-landslide-offers-rare-chance-to-fix-australia-s-economy
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-04/albanese-landslide-offers-rare-chance-to-fix-australia-s-economy
+            </guid>
+            <dc:creator><![CDATA[Swati Pandey]]></dc:creator>
+            <pubDate>Sun, 04 May 2025 22:45:57 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4KrA3D9i69M/v1/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4KrA3D9i69M/v1/1200x-1.jpg"></media:thumbnail>
+                <media:description>
+                    <![CDATA[Anthony Albanese, Australia's prime minister, left, with his son Nathan Albanese, center, and his partner Jodie Haydon at the Labor Party election night event in Sydney, Australia, on Saturday, May 3, 2025. Albanese was re-elected in Saturday's vote with an expanded majority, projections show, becoming the nation's first leader in 21 years to win back-to-back elections.]]></media:description>
+            </media:content>
+        </item>
+        <item>
+            <title><![CDATA[Indonesia Seen to Cut Rate Twice This Year Amid US Tariff Talks]]></title>
+            <description>
+                <![CDATA[Indonesia’s central bank is expected to resume monetary easing after holding its rate unchanged for three consecutive meetings, moving to bolster economic growth against the backdrop of rising tariffs and trade policy uncertainty.]]></description>
+            <link>
+                https://www.bloomberg.com/news/articles/2025-05-04/indonesia-seen-to-cut-rate-twice-this-year-amid-us-tariff-talks
+            </link>
+            <guid isPermaLink="true">
+                https://www.bloomberg.com/news/articles/2025-05-04/indonesia-seen-to-cut-rate-twice-this-year-amid-us-tariff-talks
+            </guid>
+            <dc:creator><![CDATA[Tomoko Sato]]></dc:creator>
+            <pubDate>Sun, 04 May 2025 23:00:00 GMT</pubDate>
+            <media:content url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iMlfuL9fhT5U/v0/1200x-1.jpg"
+                           type="image/jpeg">
+                <media:thumbnail
+                        url="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iMlfuL9fhT5U/v0/1200x-1.jpg"></media:thumbnail>
+                <media:description/>
+            </media:content>
+        </item>
+    </channel>
+</rss>
