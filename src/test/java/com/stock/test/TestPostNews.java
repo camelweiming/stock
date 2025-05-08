@@ -15,11 +15,16 @@ import java.util.Map;
  */
 public class TestPostNews {
     private static DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public static void main(String[] args) throws IOException, ParseException {
-        Map<String,String> m = new HashMap<>();
+        Map<String, String> m = new HashMap<>();
         m.put("date", LocalDateTime.now().format(df));
-        m.put("title","BIG NEWS CONFERENCE TOMORROW");
-        m.put("content","TRUMP: BIG NEWS CONFERENCE TOMORROW 10AM EST IN OVAL, MAJOR TRADE DEAL WITH A BIG & HIGHLY RESPECTED COUNTRY");
-        HttpClientUtils.doPost("http://13.239.254.225/api/postNews",m);
+        m.put("title", "PRESIDENT SCHEDULES NEWS CONFERENCE ON MAJOR TRADE DEAL WITH KEY NATION");
+        m.put("link", "twitter.com");
+        m.put("content", "U.S. PRESIDENT SCHEDULES NEWS CONFERENCE ON MAJOR TRADE DEAL WITH KEY NATION");
+        String res = HttpClientUtils.doPost("http://13.239.254.225/api/post_news", m);
+        System.out.println(res);
     }
+
+
 }
