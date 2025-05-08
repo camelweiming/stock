@@ -14,5 +14,8 @@ export default {
   },
   getStockData(params) {
     return api.get('/stock', { params })
+  },
+  postNews(params) {
+    return api.post('/post_news',{params})
   }
 } 
