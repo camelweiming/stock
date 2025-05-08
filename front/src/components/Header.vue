@@ -8,7 +8,7 @@
         </div>
         <div class="d-flex gap-3">
           <router-link to="/" class="nav-link">首页</router-link>
-          <router-link to="/settings" class="nav-link">设置</router-link>
+<!--          <router-link to="/settings" class="nav-link">设置</router-link>-->
         </div>
       </div>
     </div>
